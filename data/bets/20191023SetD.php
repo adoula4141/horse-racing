@@ -5,13 +5,13 @@ return [
 		/**
 		Race 1
 		*/
-		'WIN' => [4, 1, 5, 10],
-		'PLACE' => [4, 1, 5, 10],
-		'QUINELLA PLACE' => [4, 1, 5, 10],
-		'QUINELLA' => [4, 1, 5, 10],
-		'FIRST 4' => [4, 1, 5, 10],
-		'TRIO' => [4, 1, 5, 10],
-		'TIERCE' => [4, 1, 5, 10],
+		'WIN' => [10, 12, 1, 5],
+		'PLACE' => [10, 12, 1, 5],
+		'QUINELLA PLACE' => [10, 12, 1, 5],
+		'QUINELLA' => [10, 12, 1, 5],
+		'FIRST 4' => [10, 12, 1, 5],
+		'TRIO' => [10, 12, 1, 5],
+		'TIERCE' => [10, 12, 1, 5],
 		'winBets' => 400,
 		'unitWinBet' => 100,
 		'plaBets' => 400,
@@ -29,13 +29,13 @@ return [
 		/**
 		Race 2
 		*/
-		'WIN' => [1, 3, 7, 8],
-		'PLACE' => [1, 3, 7, 8],
-		'QUINELLA PLACE' => [1, 3, 7, 8],
-		'QUINELLA' => [1, 3, 7, 8],
-		'FIRST 4' => [1, 3, 7, 8],
-		'TRIO' => [1, 3, 7, 8],
-		'TIERCE' => [1, 3, 7, 8],
+		'WIN' => [3, 12, 9, 4],
+		'PLACE' => [3, 12, 9, 4],
+		'QUINELLA PLACE' => [3, 12, 9, 4],
+		'QUINELLA' => [3, 12, 9, 4],
+		'FIRST 4' => [3, 12, 9, 4],
+		'TRIO' => [3, 12, 9, 4],
+		'TIERCE' => [3, 12, 9, 4],
 		'winBets' => 400,
 		'unitWinBet' => 100,
 		'plaBets' => 400,
