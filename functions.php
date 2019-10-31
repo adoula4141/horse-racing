@@ -1,125 +1,5 @@
 <?php
 
-function getWeight($name, $character)
-{
-    $name = strtolower(str_replace(" ", "", $name));
-    $occurences = 0;
-    for ($i=0; $i < strlen($name); $i++) { 
-        if($name[$i] == $character) $occurences ++;
-    }
-    return $occurences;
-}
-
-function numeroCode($character)
-{
-    $fileName = __DIR__ . "/numerology/arabic.php";
-    $numerologicalTable = include $fileName;
-    if(isset($numerologicalTable[$character])) return $numerologicalTable[$character];
-    else return 0;
-}
-
-function getShiftPosition($raceDate, $raceNumber, $shift, $position)
-{
-    $fileName = __DIR__ . "/numerology/modern.php";
-    $numerologicalTable = include $fileName;
-
-    $weights = [];
-    $jockeyNames = getJockeyNames($raceDate, $raceNumber);
-    foreach ($jockeyNames as $key => $value) {
-        $jockeyNames[$key] = strtolower(str_replace(" ", "", $value));
-    }
-    foreach ($jockeyNames as $key => $value) {
-        $weights[$key] = 0;
-        for ($i=0; $i < strlen($value); $i++) { 
-            $numerologicalValue = ($numerologicalTable[$value[$i]] + $shift ) % 26;
-            $weights[$key] += $numerologicalValue;
-        }
-        $weights[$key] /= strlen($value);
-    }
-    asort($weights); 
-    $horses = array_keys($weights);   
-    if(isset($horses[$position])){
-        return $horses[$position];
-    } 
-
-}
-
-function pList($raceDate, $raceNumber)
-{
-    $list = [];
-    $horseNames = getHorseNames($raceDate, $raceNumber);
-    $jockeyNames = getJockeyNames($raceDate, $raceNumber);
-    $trainerNames = getTrainerNames($raceDate, $raceNumber);
-    if(empty($horseNames) || empty($jockeyNames) || empty($trainerNames)) return [];
-
-    asort($horseNames);
-    $horses = array_keys($horseNames);
-    if(!in_array(end($horses), $list)) $list[] = end($horses);
-
-    asort($jockeyNames);
-    $horses = array_keys($jockeyNames);
-    if(!in_array(end($horses), $list)) $list[] = end($horses);
-
-    asort($trainerNames);
-    $horses = array_keys($trainerNames);
-    if(!in_array(end($horses), $list)) $list[] = end($horses);
-
-    // uasort($horseNames,'sortByLengthASC');
-    // $horses = array_keys($horseNames);
-    // if(!in_array(end($horses), $list)) $list[] = end($horses);
-    // uasort($horseNames,'sortByLengthDESC');
-    // $horses = array_keys($horseNames);
-    // if(!in_array(end($horses), $list)) $list[] = end($horses);
-
-    uasort($jockeyNames,'sortByLengthASC');
-    $horses = array_keys($jockeyNames);
-    if(!in_array(end($horses), $list)) $list[] = end($horses);
-    uasort($jockeyNames,'sortByLengthDESC');
-    $horses = array_keys($jockeyNames);
-    if(!in_array(end($horses), $list)) $list[] = end($horses);
-
-    // uasort($trainerNames,'sortByLengthASC');
-    // $horses = array_keys($trainerNames);
-    // if(!in_array(end($horses), $list)) $list[] = end($horses);
-    // uasort($trainerNames,'sortByLengthDESC');
-    // $horses = array_keys($trainerNames);
-    // if(!in_array(end($horses), $list)) $list[] = end($horses);
-
-    return $list;
-}
-
-function qplM($raceDate, $raceNumber)
-{
-    $myList = [];
-
-    // pla_stables.1.2.eq.2.4_0
-    $selected = getStablesRealMethod($raceDate, $raceNumber, 1, 2, 'eq', 2, 4);
-    if(isset($selected[0]) && !in_array($selected[0], $myList)) $myList[] = $selected[0];
-
-    //qpl_stables.2.3.le.2.4_0_1
-    $selected = getStablesRealMethod($raceDate, $raceNumber, 2, 3, 'le', 2, 4);
-    if(isset($selected[0]) && !in_array($selected[0], $myList)) $myList[] = $selected[0];
-    if(isset($selected[1]) && !in_array($selected[1], $myList)) $myList[] = $selected[1];
-
-    //qpl_stables.2.3.lt.2.4_0_1
-    $selected = getStablesRealMethod($raceDate, $raceNumber, 2, 3, 'lt', 2, 4);
-    if(isset($selected[0]) && !in_array($selected[0], $myList)) $myList[] = $selected[0];
-    if(isset($selected[1]) && !in_array($selected[1], $myList)) $myList[] = $selected[1];    
-
-    // qpl_stables.1.2.eq.4.4_0_1, 
-    $selected = getStablesRealMethod($raceDate, $raceNumber, 1, 2, 'eq', 4, 4);
-    if(isset($selected[0]) && !in_array($selected[0], $myList)) $myList[] = $selected[0];
-    if(isset($selected[1]) && !in_array($selected[1], $myList)) $myList[] = $selected[1];
-    //qpl_stables.1.2.lt.5.4_0_1
-    $selected = getStablesRealMethod($raceDate, $raceNumber, 1, 2, 'lt', 5, 4);
-    if(isset($selected[0]) && !in_array($selected[0], $myList)) $myList[] = $selected[0];
-    if(isset($selected[1]) && !in_array($selected[1], $myList)) $myList[] = $selected[1];
-    //qpl_stables.1.4.gt.2.4_0_1
-    $selected = getStablesRealMethod($raceDate, $raceNumber, 1, 4, 'gt', 2, 4);
-    if(isset($selected[0]) && !in_array($selected[0], $myList)) $myList[] = $selected[0];
-    if(isset($selected[1]) && !in_array($selected[1], $myList)) $myList[] = $selected[1];
-    return $myList;        
-}
 
 function jockeyName($jockeyName)
 {
@@ -253,29 +133,6 @@ function getWeights($raceDate, $raceNumber, $search, $character)
         elseif($search == 'trainerNames') $name = jockeyName($cells[8]);
         else die('No search criterion specified in getWeights function!');
         $weights[$horseNumber] = getWeight($name, $character);
-    }
-    arsort($weights);
-    return array_keys($weights);
-}
-
-function getAverageWeights($raceDate, $raceNumber, $kWeight, $nWeight, $oWeight, $wWeight)
-{
-    $items = getRaceCard($raceDate, $raceNumber);
-    $horseNumbers = [];
-    $weights = [];
-    foreach ($items as $node) {
-        $textContent = $node->textContent;
-        $cells = explode("\n", $textContent);
-        $cells = array_values(array_filter(array_map('trim', $cells), 'strlen'));
-        $horseNumber = $cells[0];
-        $horseName = $cells[2];
-        if(strpos($horseName, 'Withdrawn') !== false) continue;
-        $name = jockeyName($cells[5]);
-        $kWeights[$horseNumber] = $kWeight * getWeight($name, 'k');
-        $nWeights[$horseNumber] = $nWeight * getWeight($name, 'n');
-        $oWeights[$horseNumber] = $oWeight * getWeight($name, 'o');
-        $wWeights[$horseNumber] = $wWeight * getWeight($name, 'o');
-        $weights[$horseNumber] = $kWeights[$horseNumber] + $nWeights[$horseNumber] + $oWeights[$horseNumber] + $wWeights[$horseNumber];
     }
     arsort($weights);
     return array_keys($weights);
@@ -671,26 +528,6 @@ function getQuartetResult($raceDate, $raceNumber)
     return $winningQuartet;
 }
 
-function getRegressors12($raceDate, $raceNumber)
-{
-    //Horses that were in position k in avg1 and became in position k-1 in avg2
-    $last1Averages = getAverages($raceDate, $raceNumber, 1);
-    $last2Averages = getAverages($raceDate, $raceNumber, 2);
-    $sortedHorses1 = strictSortForKeys($last1Averages);
-    $sortedHorses2 = strictSortForKeys($last2Averages);
-    $regressors = [];
-    foreach ($sortedHorses1 as $key1 => $group1) {
-        foreach ($sortedHorses2 as $key2 => $group2) {
-            if($key1 == $key2 + 1)
-            foreach ($group1 as $element) {
-                if(in_array($element, $group2)) $regressors[] = $element;
-            }
-        }
-    }
-    return array_filter(array_values(array_unique($regressors)));
-}
-
-
 function getStables12($raceDate, $raceNumber)
 {
     return getStablesDiff($raceDate, $raceNumber, 1, 2);
@@ -731,38 +568,6 @@ function getStablesReal($raceDate, $raceNumber, $order1, $order2)
         if(isset($sortedHorses2[$key + 1]) && $sortedHorses2[$key + 1] < $value) $fuckers[] = $value;
     }
     return $fuckers;
-}
-
-function getStablesRealMethod($raceDate, $raceNumber, $order1, $order2, $direction = 'lt', $translation = 0, $slice_order = 6)
-{
-    /**
-    getStablesReal($raceDate, $raceNumber, $order1, $order2, $direction, $translation, $slice_order)
-    where $orderI = 1, 2, 3, 4, 5, 6, all,
-    and direction is either 'gt' (>), 'ge' (>=), 'lt'(<), 'le'(<=) or 'eq'(=)
-    and translation is s.t. 
-    if(isset($sortedHorses2[$key + $translation]) && $sortedHorses2[$key + $translation] $direction $value) $fuckers[] = $value;
-    in getStablesReal in functions.php
-    five possibilities for direction, 21 possibilites for (order1, order2) and $translation = 0, 1 ..., 5
-    */
-    $fuckers = [];
-    $averages1 = getAverages($raceDate, $raceNumber, $order1);
-    asort($averages1);
-    $averages2 = getAverages($raceDate, $raceNumber, $order2);
-    asort($averages2);
-    $sortedHorses1 = array_keys($averages1);
-    $sortedHorses2 = array_keys($averages2);
-    foreach ($sortedHorses1 as $key => $value) {
-        // $sortedHorses2[$key] > $value positive for qpl_S56
-        // $sortedHorses2[$key] < $value positive for win_S23
-        if(isset($sortedHorses2[$key + $translation])) {
-            if( $direction == 'lt' && $sortedHorses2[$key + $translation] < $value) $fuckers[] = $value;
-            elseif( $direction == 'le' && $sortedHorses2[$key + $translation] <= $value) $fuckers[] = $value;
-            elseif( $direction == 'gt' && $sortedHorses2[$key + $translation] > $value) $fuckers[] = $value;
-            elseif( $direction == 'ge' && $sortedHorses2[$key + $translation] >= $value) $fuckers[] = $value;
-            elseif( $direction == 'eq' && $sortedHorses2[$key + $translation] == $value) $fuckers[] = $value;
-        }
-    }
-    return array_slice($fuckers, 0, $slice_order);
 }
 
 
