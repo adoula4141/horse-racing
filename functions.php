@@ -98,22 +98,6 @@ function getJockeyNames($raceDate, $raceNumber, $specify = false)
     return $jockeyNames;
 }
 
-function getTrainerNames($raceDate, $raceNumber)
-{
-    $items = getRaceCard($raceDate, $raceNumber);
-    $horseNumbers = [];
-    $trainerNames = [];
-    foreach ($items as $node) {
-        $textContent = $node->textContent;
-        $cells = explode("\n", $textContent);
-        $cells = array_values(array_filter(array_map('trim', $cells), 'strlen'));
-        $horseNumber = $cells[0];
-        $horseName = $cells[2];
-        if(strpos($horseName, 'Withdrawn') !== false) continue;
-        $trainerNames[$horseNumber] = jockeyName($cells[8]);
-    }
-    return $trainerNames;
-}
 
 function getWeights($raceDate, $raceNumber, $search, $character)
 {
