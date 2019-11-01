@@ -1,5 +1,14 @@
 <?php
 
+function getWeight($name, $character)   
+{   
+    $name = strtolower(str_replace(" ", "", $name));    
+    $occurences = 0;    
+    for ($i=0; $i < strlen($name); $i++) {  
+        if($name[$i] == $character) $occurences ++; 
+    }   
+    return $occurences; 
+}
 
 function jockeyName($jockeyName)
 {
