@@ -25,15 +25,14 @@ function getdata($raceDate, $totalRaces, $outputFile)
     
         $toPlace = array_slice($list, 0, 5);
         $toWin = $toPlace;
-        $toQpl = array_slice($list, 0, 5);
+        $toQpl = $list;
         $toQin = $toQpl;
 
-        if(count($toWin) >=3) $toTrio = $toWin;
+        if(count($list) >=3) $toTrio = $list;
         else $toTrio = [];
         $toTce = $toTrio;
 
-        if(count($toWin) >= 4) $toF4 = $toWin;
-        elseif(count($toTrio) >=4) $toF4 = $toTrio;
+        if(count($list) >= 4) $toF4 = $list;
         else $toF4 = [];
 
         $betting .= "\t'R$raceNumber' => [\n";
