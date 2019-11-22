@@ -14,17 +14,34 @@ function getdata($raceDate, $totalRaces, $outputFile)
     $betting = "<?php\n\n";
     $betting .= "return [\n";
 
+    $listR1 = [];
+    $horses = getWeights($raceDate, 1, 'jockeyNames', 'k');   
+    if(isset($horses[0]) && !in_array($horses[0], $listR1)) $listR1[] = $horses[0];
+    if(isset($horses[3]) && !in_array($horses[3], $listR1)) $listR1[] = $horses[3];
+    $horses = getWeights($raceDate, 1, 'jockeyNames', 'o');   
+    if(isset($horses[0]) && !in_array($horses[0], $listR1)) $listR1[] = $horses[0];
+    if(isset($horses[3]) && !in_array($horses[3], $listR1)) $listR1[] = $horses[3];
+
+    $listR2 = [];
+    $horses = getWeights($raceDate, 2, 'jockeyNames', 'k');   
+    if(isset($horses[0]) && !in_array($horses[0], $listR2)) $listR2[] = $horses[0];
+    if(isset($horses[3]) && !in_array($horses[3], $listR2)) $listR2[] = $horses[3];
+    $horses = getWeights($raceDate, 2, 'jockeyNames', 'o');   
+    if(isset($horses[0]) && !in_array($horses[0], $listR2)) $listR2[] = $horses[0];
+    if(isset($horses[3]) && !in_array($horses[3], $listR2)) $listR2[] = $horses[3];
+
+    $toPlace = array_values(array_unique(array_merge(
+            array_intersect($listR1, $listR2),
+            array_intersect($listR2, $listR1)
+    )));
+    $toWin = $toPlace;
+
     for ($raceNumber = 1; $raceNumber <= $totalRaces; $raceNumber++) { 
-        $list = [];
-        $horses = getWeights($raceDate, $raceNumber, 'jockeyNames', 'k');   
-        if(isset($horses[0]) && !in_array($horses[0], $list)) $list[] = $horses[0];
-        if(isset($horses[3]) && !in_array($horses[3], $list)) $list[] = $horses[3];
-        $horses = getWeights($raceDate, $raceNumber, 'jockeyNames', 'o');   
-        if(isset($horses[0]) && !in_array($horses[0], $list)) $list[] = $horses[0];
-        if(isset($horses[3]) && !in_array($horses[3], $list)) $list[] = $horses[3];
-    
-        $toPlace = array_slice($list, 0, 5);
-        $toWin = $toPlace;
+        if($raceNumber == 1) $list = $listR1;
+        else $list = $listR2;
+
+        if(count($toPlace) == 0) $list = [];
+
         $toQpl = $list;
         $toQin = $toQpl;
 
