@@ -1,33 +1,59 @@
 <?php
 
+
 include __DIR__ . '/functions.php';
 
-$totalRaces = 2; //default
+$totalRaces = 11; //default
 
 $raceDate = trim($argv[1]);
 
-$outputFile = "data/bets/$raceDate"."SetS34.php";
+$outputFile = "data/bets/$raceDate"."SetC.php";
 
 function getdata($raceDate, $totalRaces, $outputFile)
 {
     $betting = "<?php\n\n";
     $betting .= "return [\n";
 
-    for ($raceNumber = 1; $raceNumber <= $totalRaces; $raceNumber++) { 
-        $bloodyList = getStablesReal($raceDate, $raceNumber, 3, 4);
-        $bloodyList = array_slice($bloodyList, 0, 4);
+    $list = getSelection($raceDate, $totalRaces);
+    $toWin = array_slice($list, 0, 2);
 
-        $toWin = $bloodyList;
-        $toPlace = $bloodyList;
-        if(count($bloodyList) >=2) $toQpl = $bloodyList;
-        else $toQpl = [];
-        if(count($bloodyList) >=2) $toQin = $bloodyList;
-        else $toQin = [];
-        if(count($bloodyList) >=3) $toTrio = $bloodyList;
+    $listR1 = [];
+    $horses = getWeights($raceDate, 1, 'jockeyNames', 'k');   
+    if(isset($horses[0]) && !in_array($horses[0], $listR1)) $listR1[] = $horses[0];
+    if(isset($horses[3]) && !in_array($horses[3], $listR1)) $listR1[] = $horses[3];
+    $horses = getWeights($raceDate, 1, 'jockeyNames', 'o');   
+    if(isset($horses[0]) && !in_array($horses[0], $listR1)) $listR1[] = $horses[0];
+    if(isset($horses[3]) && !in_array($horses[3], $listR1)) $listR1[] = $horses[3];
+
+    $listR2 = [];
+    $horses = getWeights($raceDate, 2, 'jockeyNames', 'k');   
+    if(isset($horses[0]) && !in_array($horses[0], $listR2)) $listR2[] = $horses[0];
+    if(isset($horses[3]) && !in_array($horses[3], $listR2)) $listR2[] = $horses[3];
+    $horses = getWeights($raceDate, 2, 'jockeyNames', 'o');   
+    if(isset($horses[0]) && !in_array($horses[0], $listR2)) $listR2[] = $horses[0];
+    if(isset($horses[3]) && !in_array($horses[3], $listR2)) $listR2[] = $horses[3];
+
+    $toPlace = array_values(array_unique(array_merge(
+            array_intersect($listR1, $listR2),
+            array_intersect($listR2, $listR1)
+    )));
+
+    if(count($toPlace) == 0) {
+        $list = [];
+        $toWin = [];
+    }
+    else $list = $toPlace;
+    
+    for ($raceNumber = 1; $raceNumber <= $totalRaces; $raceNumber++) { 
+        $toPlace = $list;
+        $toQpl = $list;
+        $toQin = $toQpl;
+
+        if(count($list) >=3) $toTrio = $list;
         else $toTrio = [];
-        if(count($bloodyList) >=3) $toTce = $bloodyList;
-        else $toTce = [];
-        if(count($bloodyList) >=4) $toF4 = $bloodyList;
+        $toTce = $toTrio;
+
+        if(count($list) >= 4) $toF4 = $list;
         else $toF4 = [];
 
         $betting .= "\t'R$raceNumber' => [\n";

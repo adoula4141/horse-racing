@@ -1,5 +1,30 @@
 <?php
 
+function getSelection($raceDate, $totalRaces)
+{
+    $selection = [];
+
+    for ($i=1; $i <= $totalRaces ; $i++) { 
+        for ($j=$i; $j <= $totalRaces ; $j++) { 
+            $horses = getWeights($raceDate, $i, 'jockeyNames', 'c');   
+            if(isset($horses[0]) && !in_array($horses[0], $listR1)) $listR1[] = $horses[0];
+            if(isset($horses[2]) && !in_array($horses[2], $listR1)) $listR1[] = $horses[2];
+
+            $horses = getWeights($raceDate, $j, 'jockeyNames', 'c');   
+            if(isset($horses[0]) && !in_array($horses[0], $listR2)) $listR2[] = $horses[0];
+            if(isset($horses[2]) && !in_array($horses[2], $listR2)) $listR2[] = $horses[2];
+
+            $list = array_values(array_unique(array_merge(
+                    array_intersect($listR1, $listR2),
+                    array_intersect($listR2, $listR1)
+            ))); 
+
+            $selection = array_values(array_unique(array_merge($selection, $list)));  
+        }
+    }
+    return $selection;
+}
+
 function getWeight($name, $character)   
 {   
     $name = strtolower(str_replace(" ", "", $name));    
@@ -23,42 +48,6 @@ function jockeyLastName($jockeyName)
     return $parts[count($parts) - 1];
 }
 
-function strictSortForKeys($arr)
-{
-    if(empty($arr)) return [];
-    asort($arr);
-    $keys = array_keys($arr);
-    $n = count($keys);
-    $result = [ [ $keys[0] ] ];
-    $current = 1;
-    for ($i=1; $i < $n; $i++) { 
-        if($arr[$keys[$i]] == $arr[$keys[$i -1]]) $result[$current][] = $keys[$i] ;
-        else {
-            $current = $current + 1;
-            $result[$current] = [  $keys[$i] ];
-        }
-    }
-    return $result;
-}
-
-function getRaceDates()
-{
-    $raceDates = [];
-    $resultsDir = __DIR__ . "/data/results";
-    if ($handle = opendir($resultsDir)) {
-        while (false !== ($entry = readdir($handle))) {
-            if ($entry != "." && $entry != "..") {
-                if($entry !== "template.html"){
-                    $raceDates[] = substr($entry, 0, -5);
-                }
-            }
-        }
-        closedir($handle);
-    }
-    asort($raceDates);
-    return $raceDates;
-}
-
 function getRaceCard($raceDate, $raceNumber)
 {
     $folderName = __DIR__ . "/data/racecard/$raceDate";
@@ -71,42 +60,6 @@ function getRaceCard($raceDate, $raceNumber)
     $items = $DOM->getElementsByTagName('tr');
     return $items;
 }
-
-function getHorseNames($raceDate, $raceNumber)
-{
-    $items = getRaceCard($raceDate, $raceNumber);
-    $horseNumbers = [];
-    $horseNames = [];
-    foreach ($items as $node) {
-        $textContent = $node->textContent;
-        $cells = explode("\n", $textContent);
-        $cells = array_values(array_filter(array_map('trim', $cells), 'strlen'));
-        $horseNumber = $cells[0];
-        $horseName = $cells[2];
-        if(strpos($horseName, 'Withdrawn') !== false) continue;
-        $horseNames[$horseNumber] = $horseName;
-    }
-    return $horseNames;
-}
-
-function getJockeyNames($raceDate, $raceNumber, $specify = false)
-{
-    $items = getRaceCard($raceDate, $raceNumber);
-    $horseNumbers = [];
-    $jockeyNames = [];
-    foreach ($items as $node) {
-        $textContent = $node->textContent;
-        $cells = explode("\n", $textContent);
-        $cells = array_values(array_filter(array_map('trim', $cells), 'strlen'));
-        $horseNumber = $cells[0];
-        $horseName = $cells[2];
-        if(strpos($horseName, 'Withdrawn') !== false) continue;
-        if(!$specify) $jockeyNames[$horseNumber] = jockeyName($cells[5]);
-        else $jockeyNames[$horseNumber] = jockeyLastName($cells[5]);
-    }
-    return $jockeyNames;
-}
-
 
 function getWeights($raceDate, $raceNumber, $search, $character)
 {
@@ -129,37 +82,6 @@ function getWeights($raceDate, $raceNumber, $search, $character)
     }
     arsort($weights);
     return array_keys($weights);
-}
-
-function getAverages($raceDate, $raceNumber, $order)
-{
-    $items = getRaceCard($raceDate, $raceNumber);
-    $averages = [];
-    foreach ($items as $node) {
-        $textContent = $node->textContent;
-        $cells = explode("\n", $textContent);
-        $cells = array_values(array_filter(array_map('trim', $cells), 'strlen'));
-        $horseNumber = $cells[0];
-        $performances = $cells[1];
-        //horse name
-        $horseName = $cells[2];
-        if(strpos($horseName, 'Withdrawn') !== false)
-        {
-            continue;
-        }
-        if($order == "all")
-        {
-            $averages[$horseNumber] = (
-                    perfAvg($performances, 6) + perfAvg($performances, 5) + perfAvg($performances, 4) 
-                +   perfAvg($performances, 3) + perfAvg($performances, 2) + perfAvg($performances, 1)
-            ) / 6;
-        }
-        else
-        {
-            $averages[$horseNumber] = perfAvg($performances, $order);
-        }
-    }
-    return $averages;
 }
 
 function getWinBalance($raceDate, $raceNumber, $selected, $unitBets = 10)
@@ -197,7 +119,7 @@ function plaBalance($raceDate, $method)
     $allBets = include($betsFile);
     $totalWon = 0;
 
-    for ($raceNumber=1; $raceNumber <= 2; $raceNumber++) { 
+    for ($raceNumber=1; $raceNumber <= 9; $raceNumber++) { 
         //retrieve bets placed for race $raceNumber
         if (!isset($allBets["R$raceNumber"])) {
             continue;
@@ -217,7 +139,7 @@ function winBalance($raceDate, $method)
     $allBets = include($betsFile);
     $totalWon = 0;
 
-    for ($raceNumber=1; $raceNumber <= 2; $raceNumber++) { 
+    for ($raceNumber=1; $raceNumber <= 9; $raceNumber++) { 
         //retrieve bets placed for race $raceNumber
         if (!isset($allBets["R$raceNumber"])) {
             continue;
@@ -237,7 +159,7 @@ function qplBalance($raceDate, $method)
     $allBets = include($betsFile);
     $totalWon = 0;
 
-    for ($raceNumber=1; $raceNumber <= 2; $raceNumber++) { 
+    for ($raceNumber=1; $raceNumber <= 9; $raceNumber++) { 
         //retrieve bets placed for race $raceNumber
         if (!isset($allBets["R$raceNumber"])) {
             continue;
@@ -257,7 +179,7 @@ function qinBalance($raceDate, $method)
     $allBets = include($betsFile);
     $totalWon = 0;
 
-    for ($raceNumber=1; $raceNumber <= 2; $raceNumber++) { 
+    for ($raceNumber=1; $raceNumber <= 9; $raceNumber++) { 
         //retrieve bets placed for race $raceNumber
         if (!isset($allBets["R$raceNumber"])) {
             continue;
@@ -277,7 +199,7 @@ function trioBalance($raceDate, $method)
     $allBets = include($betsFile);
     $totalWon = 0;
 
-    for ($raceNumber=1; $raceNumber <= 2; $raceNumber++) { 
+    for ($raceNumber=1; $raceNumber <= 9; $raceNumber++) { 
         //retrieve bets placed for race $raceNumber
         if (!isset($allBets["R$raceNumber"])) {
             continue;
@@ -298,7 +220,7 @@ function tceBalance($raceDate, $method)
     $allBets = include($betsFile);
     $totalWon = 0;
 
-    for ($raceNumber=1; $raceNumber <= 2; $raceNumber++) { 
+    for ($raceNumber=1; $raceNumber <= 9; $raceNumber++) { 
         //retrieve bets placed for race $raceNumber
         if (!isset($allBets["R$raceNumber"])) {
             continue;
@@ -521,127 +443,6 @@ function getQuartetResult($raceDate, $raceNumber)
     return $winningQuartet;
 }
 
-function getStables12($raceDate, $raceNumber)
-{
-    return getStablesDiff($raceDate, $raceNumber, 1, 2);
-}
-
-function getStables23($raceDate, $raceNumber)
-{
-    return getStablesDiff($raceDate, $raceNumber, 2, 3);
-}
-
-function getStables34($raceDate, $raceNumber)
-{
-    return getStablesDiff($raceDate, $raceNumber, 3, 4);
-}
-
-function getStables45($raceDate, $raceNumber)
-{
-    return getStablesDiff($raceDate, $raceNumber, 4, 5);
-}
-
-function getStables56($raceDate, $raceNumber)
-{
-    return getStablesDiff($raceDate, $raceNumber, 5, 6);
-}
-
-function getStablesReal($raceDate, $raceNumber, $order1, $order2)
-{
-    $fuckers = [];
-    $averages1 = getAverages($raceDate, $raceNumber, $order1);
-    asort($averages1);
-    $averages2 = getAverages($raceDate, $raceNumber, $order2);
-    asort($averages2);
-    $sortedHorses1 = array_keys($averages1);
-    $sortedHorses2 = array_keys($averages2);
-    foreach ($sortedHorses1 as $key => $value) {
-        // $sortedHorses2[$key] > $value positive for qpl_S56
-        // $sortedHorses2[$key] < $value positive for win_S23
-        if(isset($sortedHorses2[$key + 1]) && $sortedHorses2[$key + 1] < $value) $fuckers[] = $value;
-    }
-    return $fuckers;
-}
-
-
-function getStablesDiff($raceDate, $raceNumber, $order1, $order2)
-{
-    $averages1 = getAverages($raceDate, $raceNumber, $order1);
-    $averages2 = getAverages($raceDate, $raceNumber, $order2);
-    $sortedHorses1 = strictSortForKeys($averages1);
-    $sortedHorses2 = strictSortForKeys($averages2);
-    $intersection = [];
-    foreach ($sortedHorses1 as $key1 => $group1) {
-        if(isset($sortedHorses2[$key1])){
-            $intersect1 = array_intersect($group1, $sortedHorses2[$key1]);
-            $intersect2 = array_intersect($sortedHorses2[$key1], $group1);
-        }
-        else {
-            $intersect1 = [];
-            $intersect2 = [];
-        }
-        if(!empty($intersect1)){
-            $intersection = array_merge($intersection, $intersect1);
-        }
-        if(!empty($intersect2)){
-            $intersection = array_merge($intersection, $intersect2);
-        }
-    }
-    return array_filter(array_values(array_unique($intersection)));
-}
-
-function getStables($raceDate, $raceNumber)
-{
-    $stables1 = getStables12($raceDate, $raceNumber);
-    $stables2 = getStables23($raceDate, $raceNumber);
-    $stables = array_merge($stables1, $stables2);
-    return array_filter(array_values(array_unique($stables)));
-}
-
-function getStables123($raceDate, $raceNumber)
-{
-    $stables1 = getStables12($raceDate, $raceNumber);
-    $stables2 = getStables23($raceDate, $raceNumber);
-    $stables = array_merge($stables1, $stables2);
-    return array_filter(array_values(array_unique($stables)));
-}
-
-function getStables234($raceDate, $raceNumber)
-{
-    $stables1 = getStables23($raceDate, $raceNumber);
-    $stables2 = getStables34($raceDate, $raceNumber);
-    $stables = array_merge($stables1, $stables2);
-    return array_filter(array_values(array_unique($stables)));
-}
-
-function getStables345($raceDate, $raceNumber)
-{
-    $stables1 = getStables34($raceDate, $raceNumber);
-    $stables2 = getStables45($raceDate, $raceNumber);
-    $stables = array_merge($stables1, $stables2);
-    return array_filter(array_values(array_unique($stables)));
-}
-
-function getStables456($raceDate, $raceNumber)
-{
-    $stables1 = getStables45($raceDate, $raceNumber);
-    $stables2 = getStables56($raceDate, $raceNumber);
-    $stables = array_merge($stables1, $stables2);
-    return array_filter(array_values(array_unique($stables)));
-}
-
-function getStablesAll($raceDate, $raceNumber)
-{
-    $stables1 = getStables12($raceDate, $raceNumber);
-    $stables2 = getStables23($raceDate, $raceNumber);
-    $stables3 = getStables34($raceDate, $raceNumber);
-    $stables4 = getStables45($raceDate, $raceNumber);
-    $stables5 = getStables56($raceDate, $raceNumber);
-    $stables = array_merge($stables1, $stables2, $stables3, $stables4, $stables5);
-    return array_filter(array_values(array_unique($stables)));
-}
-
-
 function factorial(int $n)
 {
     $factorial = 1;
@@ -666,30 +467,6 @@ function permutations(int $n, int $k)
     $nominator   = factorial($n);
     $denominator = factorial($n - $k);
     return $nominator / $denominator;
-}
-
-function perfAvg($performances, $order)
-{
-    $pastPerformances = explode('/', $performances);
-    $perfLength = min(count($pastPerformances), $order);
-    if ($perfLength === 0) {
-        die('NO PERFORMANCES HISTORY!!!');
-    }
-    elseif($perfLength === 1) {
-        if ($pastPerformances[0] === '-') {
-            return 1000;
-        }
-        else return $pastPerformances[0];
-    }
-    else {
-        //calculate the average of the last $perfLength performances
-        $avg = 0;
-        for ($i=0; $i < $perfLength; $i++) { 
-            $avg += (int)$pastPerformances[$i];
-        }
-        return $avg / $perfLength;
-    }
-
 }
 
 function sortByLengthASC($a,$b){

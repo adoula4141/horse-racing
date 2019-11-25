@@ -11,7 +11,7 @@ $balance = 0;
 $betsFile = "data/bets/$raceDate" . "Set$setNumber.php";
 $allBets = include($betsFile);
 
-for ($raceNumber=1; $raceNumber <= 2; $raceNumber++) { 
+for ($raceNumber=1; $raceNumber <= 9; $raceNumber++) { 
 	// if($balance > 100) 
 	// {
 	// 	echo "Final balance: $balance \n";

@@ -11,7 +11,7 @@ else {
 	$venue = "ST";
 }
 
-$totalRaces = 2;
+$totalRaces = 11;
 
 $folderName = "data/racecard/$raceDate";
 
