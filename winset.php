@@ -33,7 +33,9 @@ for ($raceNumber=1; $raceNumber <= 9; $raceNumber++) {
 	$raceEnds = strpos($content, "</R$raceNumber>");
 	$raceDividends = substr($content, $raceStarts + 5, $raceEnds - $raceStarts - 4);
 	$raceDivParts = array_values(array_filter(array_map('trim', explode("\n", $raceDividends))));
-
+	if (!isset($raceDivParts[0])) {
+		continue;
+	}
 	//1. Winning number
 	$winnerLine = $raceDivParts[0];
 	$winnerLineParts = explode("\t", $winnerLine);
