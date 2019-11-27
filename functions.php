@@ -119,7 +119,7 @@ function plaBalance($raceDate, $method)
     $allBets = include($betsFile);
     $totalWon = 0;
 
-    for ($raceNumber=1; $raceNumber <= 9; $raceNumber++) { 
+    for ($raceNumber=1; $raceNumber <= 8; $raceNumber++) { 
         //retrieve bets placed for race $raceNumber
         if (!isset($allBets["R$raceNumber"])) {
             continue;
@@ -139,7 +139,7 @@ function winBalance($raceDate, $method)
     $allBets = include($betsFile);
     $totalWon = 0;
 
-    for ($raceNumber=1; $raceNumber <= 9; $raceNumber++) { 
+    for ($raceNumber=1; $raceNumber <= 8; $raceNumber++) { 
         //retrieve bets placed for race $raceNumber
         if (!isset($allBets["R$raceNumber"])) {
             continue;
@@ -159,7 +159,7 @@ function qplBalance($raceDate, $method)
     $allBets = include($betsFile);
     $totalWon = 0;
 
-    for ($raceNumber=1; $raceNumber <= 9; $raceNumber++) { 
+    for ($raceNumber=1; $raceNumber <= 8; $raceNumber++) { 
         //retrieve bets placed for race $raceNumber
         if (!isset($allBets["R$raceNumber"])) {
             continue;
@@ -179,7 +179,7 @@ function qinBalance($raceDate, $method)
     $allBets = include($betsFile);
     $totalWon = 0;
 
-    for ($raceNumber=1; $raceNumber <= 9; $raceNumber++) { 
+    for ($raceNumber=1; $raceNumber <= 8; $raceNumber++) { 
         //retrieve bets placed for race $raceNumber
         if (!isset($allBets["R$raceNumber"])) {
             continue;
@@ -199,7 +199,7 @@ function trioBalance($raceDate, $method)
     $allBets = include($betsFile);
     $totalWon = 0;
 
-    for ($raceNumber=1; $raceNumber <= 9; $raceNumber++) { 
+    for ($raceNumber=1; $raceNumber <= 8; $raceNumber++) { 
         //retrieve bets placed for race $raceNumber
         if (!isset($allBets["R$raceNumber"])) {
             continue;
@@ -220,7 +220,7 @@ function tceBalance($raceDate, $method)
     $allBets = include($betsFile);
     $totalWon = 0;
 
-    for ($raceNumber=1; $raceNumber <= 9; $raceNumber++) { 
+    for ($raceNumber=1; $raceNumber <= 8; $raceNumber++) { 
         //retrieve bets placed for race $raceNumber
         if (!isset($allBets["R$raceNumber"])) {
             continue;

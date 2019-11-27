@@ -43,12 +43,19 @@ function getdata($raceDate, $totalRaces, $outputFile)
         $toWin = [];
     }
     else $list = $toPlace;
+    $toPlace = $list;
+
+    //remove all intersections between $toWin and $toPlace
+    $intersection = array_filter(array_values(array_merge(array_intersect($toWin, $toPlace), array_intersect($toPlace, $toWin))));
+    $toWin = array_diff($toWin, $intersection);
+    $toPlace = array_diff($toPlace, $intersection);
+
+    $list = $toPlace;
+    
+    $toQpl = $list;
+    $toQin = $toQpl;
     
     for ($raceNumber = 1; $raceNumber <= $totalRaces; $raceNumber++) { 
-        $toPlace = $list;
-        $toQpl = $list;
-        $toQin = $toQpl;
-
         if(count($list) >=3) $toTrio = $list;
         else $toTrio = [];
         $toTce = $toTrio;
