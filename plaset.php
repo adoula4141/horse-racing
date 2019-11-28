@@ -11,22 +11,22 @@ $balance = 0;
 $betsFile = "data/bets/$raceDate" . "Set$setNumber.php";
 $allBets = include($betsFile);
 
-for ($raceNumber=1; $raceNumber <= 8; $raceNumber++) { 
+for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) { 
 	// if($balance > 100) 
 	// {
 	// 	echo "Final balance: $balance \n";
 	// 	exit();
 	// }
 	//retrieve bets placed for race $raceNumber
-	if (!isset($allBets["R$raceNumber"])) {
+	if (!isset($allBets[$raceNumber])) {
 		continue;
 	}
-	$bets = $allBets["R$raceNumber"];
+	$bets = $allBets[$raceNumber];
 	if(!isset($bets['PLACE'])) continue;
 	$toPlace = $bets['PLACE'];
-	$plaBets = $bets['plaBets'];
 	if(isset($bets['unitPlaBet'])) $unitPlaBet = $bets['unitPlaBet'];
 	else $unitPlaBet = 10;
+	$plaBets = $unitPlaBet * count($toPlace);
 
 	//retrieve results for race $raceNumber
 	$raceStarts = strpos($content, "<R$raceNumber>");

@@ -11,15 +11,15 @@ $balance = 0;
 $betsFile = "data/bets/$raceDate" . "Set$setNumber.php";
 $allBets = include($betsFile);
 
-for ($raceNumber=1; $raceNumber <= 8; $raceNumber++) { 
+for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) { 
 	if ($balance < 0) {
 		echo "Negative balance: $balance \n";
 	}
 	//retrieve bets placed for race $raceNumber
-	if (!isset($allBets["R$raceNumber"])) {
+	if (!isset($allBets[$raceNumber])) {
 		continue;
 	}
-	$bets = $allBets["R$raceNumber"];
+	$bets = $allBets[$raceNumber];
 	if(!isset($bets['TRIO'])) continue;
 	$toQin = $bets['TRIO'];
 	$qinBets = $bets['trioBets'];

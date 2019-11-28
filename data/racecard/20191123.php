@@ -4,7 +4,7 @@
 	 Jockey Names
 */
 return [
-	'R1' => [
+	1 => [
 		/**
 		Race 1
 		*/
@@ -21,7 +21,7 @@ return [
 		11 => "URispoli",
 		12 => "HNWong(-3)",
 	],
-	'R2' => [
+	2 => [
 		/**
 		Race 2
 		*/
@@ -40,7 +40,7 @@ return [
 		13 => "ASanna",
 		14 => "MFPoon(-)",
 	],
-	'R3' => [
+	3 => [
 		/**
 		Race 3
 		*/
@@ -59,12 +59,26 @@ return [
 		13 => "GvanNiekerk",
 		14 => "HNWong(-3)",
 	],
-	'R4' => [
+	4 => [
 		/**
 		Race 4
 		*/
+		1 => "BShinn",
+		2 => "ABadel",
+		3 => "ZPurton",
+		4 => "ASanna",
+		5 => "URispoli",
+		6 => "NCallan",
+		7 => "HWLai",
+		8 => "MChadwick",
+		9 => "HNWong(-3)",
+		10 => "KHChan(-10)",
+		11 => "CYHo",
+		12 => "MFPoon(-)",
+		13 => "CSchofield",
+		14 => "GvanNiekerk",
 	],
-	'R5' => [
+	5 => [
 		/**
 		Race 5
 		*/
@@ -81,12 +95,26 @@ return [
 		11 => "HTMo(-3)",
 		12 => "LHewitson",
 	],
-	'R6' => [
+	6 => [
 		/**
 		Race 6
 		*/
+		1 => "LHewitson",
+		2 => "GvanNiekerk",
+		3 => "HNWong(-3)",
+		4 => "MFPoon(-)",
+		5 => "ZPurton",
+		6 => "HTMo(-3)",
+		7 => "NCallan",
+		8 => "ABadel",
+		9 => "RBayliss",
+		10 => "ASanna",
+		11 => "URispoli",
+		12 => "HWLai",
+		13 => "CSchofield",
+		14 => "CYHo",
 	],
-	'R7' => [
+	7 => [
 		/**
 		Race 7
 		*/
@@ -105,7 +133,7 @@ return [
 		13 => "MLYeung",
 		14 => "ABadel",
 	],
-	'R8' => [
+	8 => [
 		/**
 		Race 8
 		*/
@@ -122,19 +150,42 @@ return [
 		11 => "HTMo(-3)",
 		12 => "HWLai",
 	],
-	'R9' => [
+	9 => [
 		/**
 		Race 9
 		*/
+		1 => "ABadel",
+		2 => "ZPurton",
+		3 => "ASanna",
+		4 => "CYHo",
+		5 => "BShinn",
+		6 => "MFPoon(-)",
+		7 => "MLYeung",
+		8 => "CSchofield",
+		9 => "RBayliss",
+		10 => "NCallan",
+		11 => "LHewitson",
+		12 => "HWLai",
+		13 => "GvanNiekerk",
+		14 => "URispoli",
 	],
-	'R10' => [
+	10 => [
 		/**
 		Race 10
 		*/
-	],
-	'R11' => [
-		/**
-		Race 11
-		*/
+		1 => "CYHo",
+		2 => "URispoli",
+		3 => "MFPoon(-)",
+		4 => "BShinn",
+		5 => "ASanna",
+		6 => "RBayliss",
+		7 => "KHChan(-10)",
+		8 => "GvanNiekerk",
+		9 => "MChadwick",
+		10 => "ABadel",
+		11 => "NCallan",
+		12 => "ZPurton",
+		13 => "CSchofield",
+		14 => "LHewitson",
 	],
 ];

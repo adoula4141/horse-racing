@@ -22,10 +22,10 @@ $racecard .= "*/\n";
 $racecard .= "return [\n";
 
 for ($raceNumber = 1; $raceNumber <= $totalRaces; $raceNumber++) {
-	$racecard .= "\t'R$raceNumber' => [\n";
-    $racecard .= "\t\t/**\n";
-    $racecard .= "\t\tRace $raceNumber\n";
-    $racecard .= "\t\t*/\n";
+	$racecardPart = "\t$raceNumber => [\n";
+    $racecardPart .= "\t\t/**\n";
+    $racecardPart .= "\t\tRace $raceNumber\n";
+    $racecardPart .= "\t\t*/\n";
 
 	$url = "https://racing.hkjc.com/racing/info/meeting/RaceCard/english/Local/$raceDate/$venue/$raceNumber";
 
@@ -42,13 +42,15 @@ for ($raceNumber = 1; $raceNumber <= $totalRaces; $raceNumber++) {
 			$jockeyName = trim(preg_replace('/[\t|\n|\s{2,}]/', '', $jockeyName));
 			echo $jockeyName . "\n"; //echo for debugging purposes
 			if(!empty($jockeyName)) {
-				$racecard .= "\t\t$horseNumber => \"$jockeyName\",\n";
+				$jockeyNames[] = $jockeyName;
+				$racecardPart .= "\t\t$horseNumber => \"$jockeyName\",\n";
 				$horseNumber ++;
 			}
 		}
 	}
 
-	$racecard .= "\t],\n";
+	$racecardPart .= "\t],\n";
+	if(!empty($jockeyNames)) $racecard .= $racecardPart;
 }
 $racecard .= "];\n";
 file_put_contents($outputFileName, $racecard);

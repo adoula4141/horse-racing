@@ -4,7 +4,7 @@
 	 Jockey Names
 */
 return [
-	'R1' => [
+	1 => [
 		/**
 		Race 1
 		*/
@@ -20,7 +20,7 @@ return [
 		10 => "MLYeung",
 		11 => "MFPoon(-)",
 	],
-	'R2' => [
+	2 => [
 		/**
 		Race 2
 		*/
@@ -39,7 +39,7 @@ return [
 		13 => "LHewitson",
 		14 => "HNWong(-3)",
 	],
-	'R3' => [
+	3 => [
 		/**
 		Race 3
 		*/
@@ -56,7 +56,7 @@ return [
 		11 => "HWLai",
 		12 => "CYHo",
 	],
-	'R4' => [
+	4 => [
 		/**
 		Race 4
 		*/
@@ -75,7 +75,7 @@ return [
 		13 => "CSchofield",
 		14 => "THSo(-)",
 	],
-	'R5' => [
+	5 => [
 		/**
 		Race 5
 		*/
@@ -94,7 +94,7 @@ return [
 		13 => "KTeetan",
 		14 => "GvanNiekerk",
 	],
-	'R6' => [
+	6 => [
 		/**
 		Race 6
 		*/
@@ -111,7 +111,7 @@ return [
 		11 => "CYHo",
 		12 => "GvanNiekerk",
 	],
-	'R7' => [
+	7 => [
 		/**
 		Race 7
 		*/
@@ -127,7 +127,7 @@ return [
 		10 => "LHewitson",
 		11 => "JMoreira",
 	],
-	'R8' => [
+	8 => [
 		/**
 		Race 8
 		*/
@@ -146,7 +146,7 @@ return [
 		13 => "CSchofield",
 		14 => "HWLai",
 	],
-	'R9' => [
+	9 => [
 		/**
 		Race 9
 		*/
@@ -165,7 +165,7 @@ return [
 		13 => "MLYeung",
 		14 => "THSo(-)",
 	],
-	'R10' => [
+	10 => [
 		/**
 		Race 10
 		*/
@@ -183,10 +183,5 @@ return [
 		12 => "MFPoon(-)",
 		13 => "GvanNiekerk",
 		14 => "KTeetan",
-	],
-	'R11' => [
-		/**
-		Race 11
-		*/
 	],
 ];

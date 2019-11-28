@@ -4,17 +4,43 @@
 	 Jockey Names
 */
 return [
-	'R1' => [
+	1 => [
 		/**
 		Race 1
 		*/
+		1 => "KTeetan",
+		2 => "MChadwick",
+		3 => "JMoreira",
+		4 => "SdeSousa",
+		5 => "HNWong(-3)",
+		6 => "GvanNiekerk",
+		7 => "ABadel",
+		8 => "HWLai",
+		9 => "ZPurton",
+		10 => "HBowman",
+		11 => "HTMo(-3)",
+		12 => "KCLeung",
+		13 => "NCallan",
+		14 => "MLYeung",
 	],
-	'R2' => [
+	2 => [
 		/**
 		Race 2
 		*/
+		1 => "NCallan",
+		2 => "CSchofield",
+		3 => "ZPurton",
+		4 => "MFPoon(-)",
+		5 => "URispoli",
+		6 => "SdeSousa",
+		7 => "KTeetan",
+		8 => "GvanNiekerk",
+		9 => "HNWong(-3)",
+		10 => "HWLai",
+		11 => "KHChan(-10)",
+		12 => "JMoreira",
 	],
-	'R3' => [
+	3 => [
 		/**
 		Race 3
 		*/
@@ -33,7 +59,7 @@ return [
 		13 => "KTeetan",
 		14 => "GvanNiekerk",
 	],
-	'R4' => [
+	4 => [
 		/**
 		Race 4
 		*/
@@ -52,7 +78,7 @@ return [
 		13 => "HTMo(-3)",
 		14 => "HWLai",
 	],
-	'R5' => [
+	5 => [
 		/**
 		Race 5
 		*/
@@ -71,7 +97,7 @@ return [
 		13 => "MFPoon(-)",
 		14 => "SdeSousa",
 	],
-	'R6' => [
+	6 => [
 		/**
 		Race 6
 		*/
@@ -83,17 +109,40 @@ return [
 		6 => "SdeSousa",
 		7 => "HBowman",
 	],
-	'R7' => [
+	7 => [
 		/**
 		Race 7
 		*/
+		1 => "ZPurton",
+		2 => "SdeSousa",
+		3 => "CYHo",
+		4 => "ASanna",
+		5 => "JMoreira",
+		6 => "KTeetan",
+		7 => "GvanNiekerk",
+		8 => "HBowman",
+		9 => "ABadel",
 	],
-	'R8' => [
+	8 => [
 		/**
 		Race 8
 		*/
+		1 => "JMoreira",
+		2 => "HBowman",
+		3 => "CSchofield",
+		4 => "GvanNiekerk",
+		5 => "ABadel",
+		6 => "BShinn",
+		7 => "ASanna",
+		8 => "SdeSousa",
+		9 => "KCLeung",
+		10 => "CYHo",
+		11 => "ZPurton",
+		12 => "MLYeung",
+		13 => "NCallan",
+		14 => "KTeetan",
 	],
-	'R9' => [
+	9 => [
 		/**
 		Race 9
 		*/
@@ -112,14 +161,23 @@ return [
 		13 => "RBayliss",
 		14 => "ABadel",
 	],
-	'R10' => [
+	10 => [
 		/**
 		Race 10
 		*/
-	],
-	'R11' => [
-		/**
-		Race 11
-		*/
+		1 => "MLYeung",
+		2 => "KHChan(-10)",
+		3 => "ZPurton",
+		4 => "GvanNiekerk",
+		5 => "SdeSousa",
+		6 => "NCallan",
+		7 => "ASanna",
+		8 => "KTeetan",
+		9 => "LHewitson",
+		10 => "JMoreira",
+		11 => "RBayliss",
+		12 => "CSchofield",
+		13 => "CYHo",
+		14 => "ABadel",
 	],
 ];
