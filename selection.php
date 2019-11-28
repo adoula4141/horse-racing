@@ -20,7 +20,7 @@ asort($raceDates);
 
 
 //2. Get the balance for each racing date, betting style and set.
-$methods = [ 'win_C'];
+$methods = [ 'win_A', 'win_C', 'pla_A', 'pla_B', 'pla_C', 'pla_D', 'pla_G', 'pla_E'];
 
 $balancesMatrix = [];
 $header = ["race_date"];

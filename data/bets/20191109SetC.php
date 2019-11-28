@@ -5,16 +5,16 @@ return [
 		/**
 		Race 1
 		*/
-		'WIN' => [4, 11],
-		'PLACE' => [10],
-		'QUINELLA PLACE' => [10],
-		'QUINELLA' => [10],
+		'WIN' => [],
+		'PLACE' => [],
+		'QUINELLA PLACE' => [],
+		'QUINELLA' => [],
 		'FIRST 4' => [],
 		'TRIO' => [],
 		'TIERCE' => [],
-		'winBets' => 200,
+		'winBets' => 0,
 		'unitWinBet' => 100,
-		'plaBets' => 100,
+		'plaBets' => 0,
 		'unitPlaBet' => 100,
 		'qplBets' => 0,
 		'unitQplBet' => 10,
@@ -23,22 +23,22 @@ return [
 		'f4Bets' => 0,
 		'trioBets' => 0,
 		'tceBets' => 0,
-		'totalBets' => 300
+		'totalBets' => 0
 	],
 	'R2' => [
 		/**
 		Race 2
 		*/
-		'WIN' => [4, 11],
-		'PLACE' => [10],
-		'QUINELLA PLACE' => [10],
-		'QUINELLA' => [10],
+		'WIN' => [],
+		'PLACE' => [],
+		'QUINELLA PLACE' => [],
+		'QUINELLA' => [],
 		'FIRST 4' => [],
 		'TRIO' => [],
 		'TIERCE' => [],
-		'winBets' => 200,
+		'winBets' => 0,
 		'unitWinBet' => 100,
-		'plaBets' => 100,
+		'plaBets' => 0,
 		'unitPlaBet' => 100,
 		'qplBets' => 0,
 		'unitQplBet' => 10,
@@ -47,22 +47,22 @@ return [
 		'f4Bets' => 0,
 		'trioBets' => 0,
 		'tceBets' => 0,
-		'totalBets' => 300
+		'totalBets' => 0
 	],
 	'R3' => [
 		/**
 		Race 3
 		*/
-		'WIN' => [4, 11],
-		'PLACE' => [10],
-		'QUINELLA PLACE' => [10],
-		'QUINELLA' => [10],
+		'WIN' => [],
+		'PLACE' => [],
+		'QUINELLA PLACE' => [],
+		'QUINELLA' => [],
 		'FIRST 4' => [],
 		'TRIO' => [],
 		'TIERCE' => [],
-		'winBets' => 200,
+		'winBets' => 0,
 		'unitWinBet' => 100,
-		'plaBets' => 100,
+		'plaBets' => 0,
 		'unitPlaBet' => 100,
 		'qplBets' => 0,
 		'unitQplBet' => 10,
@@ -71,22 +71,22 @@ return [
 		'f4Bets' => 0,
 		'trioBets' => 0,
 		'tceBets' => 0,
-		'totalBets' => 300
+		'totalBets' => 0
 	],
 	'R4' => [
 		/**
 		Race 4
 		*/
-		'WIN' => [4, 11],
-		'PLACE' => [10],
-		'QUINELLA PLACE' => [10],
-		'QUINELLA' => [10],
+		'WIN' => [],
+		'PLACE' => [],
+		'QUINELLA PLACE' => [],
+		'QUINELLA' => [],
 		'FIRST 4' => [],
 		'TRIO' => [],
 		'TIERCE' => [],
-		'winBets' => 200,
+		'winBets' => 0,
 		'unitWinBet' => 100,
-		'plaBets' => 100,
+		'plaBets' => 0,
 		'unitPlaBet' => 100,
 		'qplBets' => 0,
 		'unitQplBet' => 10,
@@ -95,22 +95,22 @@ return [
 		'f4Bets' => 0,
 		'trioBets' => 0,
 		'tceBets' => 0,
-		'totalBets' => 300
+		'totalBets' => 0
 	],
 	'R5' => [
 		/**
 		Race 5
 		*/
-		'WIN' => [4, 11],
-		'PLACE' => [10],
-		'QUINELLA PLACE' => [10],
-		'QUINELLA' => [10],
+		'WIN' => [],
+		'PLACE' => [],
+		'QUINELLA PLACE' => [],
+		'QUINELLA' => [],
 		'FIRST 4' => [],
 		'TRIO' => [],
 		'TIERCE' => [],
-		'winBets' => 200,
+		'winBets' => 0,
 		'unitWinBet' => 100,
-		'plaBets' => 100,
+		'plaBets' => 0,
 		'unitPlaBet' => 100,
 		'qplBets' => 0,
 		'unitQplBet' => 10,
@@ -119,22 +119,22 @@ return [
 		'f4Bets' => 0,
 		'trioBets' => 0,
 		'tceBets' => 0,
-		'totalBets' => 300
+		'totalBets' => 0
 	],
 	'R6' => [
 		/**
 		Race 6
 		*/
-		'WIN' => [4, 11],
-		'PLACE' => [10],
-		'QUINELLA PLACE' => [10],
-		'QUINELLA' => [10],
+		'WIN' => [],
+		'PLACE' => [],
+		'QUINELLA PLACE' => [],
+		'QUINELLA' => [],
 		'FIRST 4' => [],
 		'TRIO' => [],
 		'TIERCE' => [],
-		'winBets' => 200,
+		'winBets' => 0,
 		'unitWinBet' => 100,
-		'plaBets' => 100,
+		'plaBets' => 0,
 		'unitPlaBet' => 100,
 		'qplBets' => 0,
 		'unitQplBet' => 10,
@@ -143,22 +143,22 @@ return [
 		'f4Bets' => 0,
 		'trioBets' => 0,
 		'tceBets' => 0,
-		'totalBets' => 300
+		'totalBets' => 0
 	],
 	'R7' => [
 		/**
 		Race 7
 		*/
-		'WIN' => [4, 11],
-		'PLACE' => [10],
-		'QUINELLA PLACE' => [10],
-		'QUINELLA' => [10],
+		'WIN' => [],
+		'PLACE' => [],
+		'QUINELLA PLACE' => [],
+		'QUINELLA' => [],
 		'FIRST 4' => [],
 		'TRIO' => [],
 		'TIERCE' => [],
-		'winBets' => 200,
+		'winBets' => 0,
 		'unitWinBet' => 100,
-		'plaBets' => 100,
+		'plaBets' => 0,
 		'unitPlaBet' => 100,
 		'qplBets' => 0,
 		'unitQplBet' => 10,
@@ -167,22 +167,22 @@ return [
 		'f4Bets' => 0,
 		'trioBets' => 0,
 		'tceBets' => 0,
-		'totalBets' => 300
+		'totalBets' => 0
 	],
 	'R8' => [
 		/**
 		Race 8
 		*/
-		'WIN' => [4, 11],
-		'PLACE' => [10],
-		'QUINELLA PLACE' => [10],
-		'QUINELLA' => [10],
+		'WIN' => [],
+		'PLACE' => [],
+		'QUINELLA PLACE' => [],
+		'QUINELLA' => [],
 		'FIRST 4' => [],
 		'TRIO' => [],
 		'TIERCE' => [],
-		'winBets' => 200,
+		'winBets' => 0,
 		'unitWinBet' => 100,
-		'plaBets' => 100,
+		'plaBets' => 0,
 		'unitPlaBet' => 100,
 		'qplBets' => 0,
 		'unitQplBet' => 10,
@@ -191,22 +191,22 @@ return [
 		'f4Bets' => 0,
 		'trioBets' => 0,
 		'tceBets' => 0,
-		'totalBets' => 300
+		'totalBets' => 0
 	],
 	'R9' => [
 		/**
 		Race 9
 		*/
-		'WIN' => [4, 11],
-		'PLACE' => [10],
-		'QUINELLA PLACE' => [10],
-		'QUINELLA' => [10],
+		'WIN' => [],
+		'PLACE' => [],
+		'QUINELLA PLACE' => [],
+		'QUINELLA' => [],
 		'FIRST 4' => [],
 		'TRIO' => [],
 		'TIERCE' => [],
-		'winBets' => 200,
+		'winBets' => 0,
 		'unitWinBet' => 100,
-		'plaBets' => 100,
+		'plaBets' => 0,
 		'unitPlaBet' => 100,
 		'qplBets' => 0,
 		'unitQplBet' => 10,
@@ -215,22 +215,22 @@ return [
 		'f4Bets' => 0,
 		'trioBets' => 0,
 		'tceBets' => 0,
-		'totalBets' => 300
+		'totalBets' => 0
 	],
 	'R10' => [
 		/**
 		Race 10
 		*/
-		'WIN' => [4, 11],
-		'PLACE' => [10],
-		'QUINELLA PLACE' => [10],
-		'QUINELLA' => [10],
+		'WIN' => [],
+		'PLACE' => [],
+		'QUINELLA PLACE' => [],
+		'QUINELLA' => [],
 		'FIRST 4' => [],
 		'TRIO' => [],
 		'TIERCE' => [],
-		'winBets' => 200,
+		'winBets' => 0,
 		'unitWinBet' => 100,
-		'plaBets' => 100,
+		'plaBets' => 0,
 		'unitPlaBet' => 100,
 		'qplBets' => 0,
 		'unitQplBet' => 10,
@@ -239,22 +239,22 @@ return [
 		'f4Bets' => 0,
 		'trioBets' => 0,
 		'tceBets' => 0,
-		'totalBets' => 300
+		'totalBets' => 0
 	],
 	'R11' => [
 		/**
 		Race 11
 		*/
-		'WIN' => [4, 11],
-		'PLACE' => [10],
-		'QUINELLA PLACE' => [10],
-		'QUINELLA' => [10],
+		'WIN' => [],
+		'PLACE' => [],
+		'QUINELLA PLACE' => [],
+		'QUINELLA' => [],
 		'FIRST 4' => [],
 		'TRIO' => [],
 		'TIERCE' => [],
-		'winBets' => 200,
+		'winBets' => 0,
 		'unitWinBet' => 100,
-		'plaBets' => 100,
+		'plaBets' => 0,
 		'unitPlaBet' => 100,
 		'qplBets' => 0,
 		'unitQplBet' => 10,
@@ -263,6 +263,6 @@ return [
 		'f4Bets' => 0,
 		'trioBets' => 0,
 		'tceBets' => 0,
-		'totalBets' => 300
+		'totalBets' => 0
 	],
 ];

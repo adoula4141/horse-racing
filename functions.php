@@ -1,16 +1,18 @@
 <?php
 
-function getSelection($raceDate, $totalRaces)
+function getSelection($raceDate, $totalRaces, $character = 'c')
 {
     $selection = [];
 
     for ($i=1; $i <= $totalRaces ; $i++) { 
+        $listR1 = [];
         for ($j=$i; $j <= $totalRaces ; $j++) { 
-            $horses = getWeights($raceDate, $i, 'jockeyNames', 'c');   
+            $listR2 = [];
+            $horses = getWeights($raceDate, $i, 'jockeyNames', $character);  
             if(isset($horses[0]) && !in_array($horses[0], $listR1)) $listR1[] = $horses[0];
             if(isset($horses[2]) && !in_array($horses[2], $listR1)) $listR1[] = $horses[2];
 
-            $horses = getWeights($raceDate, $j, 'jockeyNames', 'c');   
+            $horses = getWeights($raceDate, $j, 'jockeyNames', $character);   
             if(isset($horses[0]) && !in_array($horses[0], $listR2)) $listR2[] = $horses[0];
             if(isset($horses[2]) && !in_array($horses[2], $listR2)) $listR2[] = $horses[2];
 
@@ -24,6 +26,30 @@ function getSelection($raceDate, $totalRaces)
     }
     return $selection;
 }
+
+function getWeights($raceDate, $raceNumber, $search, $character)
+{
+    $jockeyNames = getJockeyNames($raceDate, $raceNumber);
+    
+    $weights = [];
+    foreach ($jockeyNames as $horseNumber => $jockeyName) {
+        if($search == 'jockeyNames') $name = jockeyName($jockeyName);
+        elseif($search == 'jockeyLastNames') $name = jockeyLastName($jockeyName);
+        else die('No search criterion specified in getWeights function!');
+        $weights[$horseNumber] = getWeight($name, $character);
+    }
+    arsort($weights);
+    return array_keys($weights);
+}
+
+function getJockeyNames($raceDate, $raceNumber)
+{
+    $inputFile = __DIR__ . "/data/racecard/$raceDate.php";
+    if(!file_exists($inputFile)) return [];
+    $jockeyNamesAllRaces = include($inputFile);
+    return $jockeyNamesAllRaces["R$raceNumber"];
+}
+
 
 function getWeight($name, $character)   
 {   
@@ -46,42 +72,6 @@ function jockeyLastName($jockeyName)
     $str = preg_replace("/\([^)]+\)/","",$jockeyName);
     $parts = explode(" ", $str);
     return $parts[count($parts) - 1];
-}
-
-function getRaceCard($raceDate, $raceNumber)
-{
-    $folderName = __DIR__ . "/data/racecard/$raceDate";
-    $inputFile = "$folderName/$raceNumber.html";
-    if(!file_exists($inputFile)) return [];
-    $contents = file_get_contents($inputFile);
-    if(empty($contents)) return [];
-    $DOM = new DOMDocument;
-    $DOM->loadHTML($contents);
-    $items = $DOM->getElementsByTagName('tr');
-    return $items;
-}
-
-function getWeights($raceDate, $raceNumber, $search, $character)
-{
-    $items = getRaceCard($raceDate, $raceNumber);
-    $horseNumbers = [];
-    $weights = [];
-    foreach ($items as $node) {
-        $textContent = $node->textContent;
-        $cells = explode("\n", $textContent);
-        $cells = array_values(array_filter(array_map('trim', $cells), 'strlen'));
-        $horseNumber = $cells[0];
-        $horseName = $cells[2];
-        if(strpos($horseName, 'Withdrawn') !== false) continue;
-        if($search == 'horseNames') $name = $cells[2];
-        elseif($search == 'jockeyNames') $name = jockeyName($cells[5]);
-        elseif($search == 'jockeyLastNames') $name = jockeyLastName($cells[5]);
-        elseif($search == 'trainerNames') $name = jockeyName($cells[8]);
-        else die('No search criterion specified in getWeights function!');
-        $weights[$horseNumber] = getWeight($name, $character);
-    }
-    arsort($weights);
-    return array_keys($weights);
 }
 
 function getWinBalance($raceDate, $raceNumber, $selected, $unitBets = 10)

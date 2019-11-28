@@ -13,35 +13,42 @@ else {
 
 $totalRaces = 11;
 
-$folderName = "data/racecard/$raceDate";
+$outputFileName = "data/racecard/$raceDate.php";
 
-if(!file_exists($folderName)) mkdir($folderName);
+$racecard = "<?php\n\n";
+$racecard .= "/**\n";
+$racecard .= "\t Jockey Names\n";
+$racecard .= "*/\n";
+$racecard .= "return [\n";
 
 for ($raceNumber = 1; $raceNumber <= $totalRaces; $raceNumber++) {
-	
-	$fileName = "$folderName/$raceNumber.html";
+	$racecard .= "\t'R$raceNumber' => [\n";
+    $racecard .= "\t\t/**\n";
+    $racecard .= "\t\tRace $raceNumber\n";
+    $racecard .= "\t\t*/\n";
 
 	$url = "https://racing.hkjc.com/racing/info/meeting/RaceCard/english/Local/$raceDate/$venue/$raceNumber";
 
 	$content = file_get_contents($url);
 
-	while (empty($content)) {
-		$content = file_get_contents($url);
-	}
+	$first_step = explode( "<td>" , $content );
 
-	$first_step = explode( '<!-- for sizing optimization -->' , $content );
-
-	$horsesTable = "";
+	$jockeyNames = [];
+	$horseNumber = 1;
 
 	for ($i=1; $i < count($first_step); $i++) { 
-		$horsesTable .= $first_step[$i];
+		if (strpos($first_step[$i], 'jockeycode')) {
+			$jockeyName = strip_tags($first_step[$i]);
+			$jockeyName = trim(preg_replace('/[\t|\n|\s{2,}]/', '', $jockeyName));
+			echo $jockeyName . "\n"; //echo for debugging purposes
+			if(!empty($jockeyName)) {
+				$racecard .= "\t\t$horseNumber => \"$jockeyName\",\n";
+				$horseNumber ++;
+			}
+		}
 	}
 
-	if(empty($horsesTable))
-	{
-		file_put_contents($fileName, $first_step[1]);
-	}
-
-	$last_step = explode('</table>', $horsesTable);
-	file_put_contents("$fileName", $last_step[0]);
+	$racecard .= "\t],\n";
 }
+$racecard .= "];\n";
+file_put_contents($outputFileName, $racecard);
