@@ -32,9 +32,9 @@ if ($handle = opendir($resultsDir)) {
 asort($raceDates);
 
 //2. Get the balance for each racing date, betting style and set.
-// $styles = [ 'win', 'pla', 'qin', 'qpl'];
-$styles = [ 'win', 'pla'];
-$methods = [ 'A', 'B', 'C', 'D', 'E', 'F', 'G' ];
+$styles = [ 'win', 'pla', 'qin', 'qpl'];
+// $styles = [ 'win', 'pla'];
+$methods = [ 'S2', 'S3', 'S5' ];
 
 $totalCount = count($styles) * count($methods);
 

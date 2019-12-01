@@ -166,7 +166,9 @@ function qplBalance($raceDate, $method)
         $bets = $allBets[$raceNumber];
         if(!isset($bets['QUINELLA PLACE'])) continue;
         $selected = $bets['QUINELLA PLACE'];
-        $totalWon += getQplBalance($raceDate, $raceNumber, $selected);
+        if(isset($bets['unitQplBet'])) $unitQplBet = $bets['unitQplBet'];
+        else $unitQplBet = 10;
+        $totalWon += getQplBalance($raceDate, $raceNumber, $selected, $unitQplBet);
     }
     return $totalWon;
 }
@@ -186,31 +188,13 @@ function qinBalance($raceDate, $method)
         $bets = $allBets[$raceNumber];
         if(!isset($bets['QUINELLA'])) continue;
         $selected = $bets['QUINELLA'];
-        $totalWon += getQinBalance($raceDate, $raceNumber, $selected);
+        if(isset($bets['unitQinBet'])) $unitQinBet = $bets['unitQinBet'];
+        else $unitQinBet = 10;
+        $totalWon += getQinBalance($raceDate, $raceNumber, $selected, $unitQinBet);
     }
     return $totalWon;
 }
 
-function trioBalance($raceDate, $method)
-{
-    //1.get the bets
-    $betsFile = "data/bets/$raceDate" . "Set$method.php";
-    $allBets = include($betsFile);
-    $totalWon = 0;
-
-    for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) { 
-        //retrieve bets placed for race $raceNumber
-        if (!isset($allBets[$raceNumber])) {
-            continue;
-        }
-        $bets = $allBets[$raceNumber];
-        if(!isset($bets['TRIO'])) continue;
-        $selected = $bets['TRIO'];
-        if(empty($selected)) continue;
-        $totalWon += getTrioBalance($raceDate, $raceNumber, $selected);
-    }
-    return $totalWon;
-}
 
 function tceBalance($raceDate, $method)
 {
@@ -274,7 +258,7 @@ function getPlaBalance($raceDate, $raceNumber, $selected, $unitBets = 10)
     return $balance;
 }
 
-function getQplBalance($raceDate, $raceNumber, $banker)
+function getQplBalance($raceDate, $raceNumber, $banker, $unitQplBet)
 {
     if(empty($banker)) return 0;
 
@@ -290,8 +274,7 @@ function getQplBalance($raceDate, $raceNumber, $banker)
             }
         }
     }
-    if(isset($bets['unitQplBet'])) $unitQplBet = $bets['unitQplBet'];
-    else $unitQplBet = 10;
+    
     $qplBets = $unitQplBet * count($toQpl);
 
     $balance = 0;
@@ -335,9 +318,25 @@ function getQplBalance($raceDate, $raceNumber, $banker)
     return $balance;
 }
 
-function getQinBalance($raceDate, $raceNumber, $selected, $unitBets = 10)
+function getQinBalance($raceDate, $raceNumber, $banker, $unitQinBet)
 {
-    if(empty($selected)) return 0;
+    if(empty($banker)) return 0;
+
+    $bankerParts = explode(' X ', $banker); 
+    $set1Parts = explode("-", $bankerParts[0]);
+    $set2Parts = explode("-", $bankerParts[1]);
+    $toQin = [];
+    foreach ($set1Parts as $val1) {
+        foreach ($set2Parts as $val2) {
+            if ($val1 !== $val2 && !in_array([$val1, $val2], $toQin) && !in_array([$val2, $val1], $toQin)) {
+                if($val1 < $val2) $toQin[] = [$val1, $val2];
+                else $toQin[] = [$val2, $val1];
+            }
+        }
+    }
+    
+    $qinBets = $unitQinBet * count($toQin);
+
     $balance = 0;
     $resultsFile = __DIR__ . "/data/results/$raceDate.html";
     if(!file_exists($resultsFile)) return $balance;
@@ -348,26 +347,63 @@ function getQinBalance($raceDate, $raceNumber, $selected, $unitBets = 10)
     $raceDividends = substr($content, $raceStarts + 5, $raceEnds - $raceStarts - 4);
     $raceDivParts = array_values(array_filter(array_map('trim', explode("\n", $raceDividends))));
     foreach ($raceDivParts as $key=>$raceDivPartsLine) {
-        if(strpos($raceDivPartsLine, "QUINELLA") !== false){
-            $qinBets = $unitBets * combinations(count($selected), 2);
+        if(strpos($raceDivPartsLine, "QUINELLA") !== false && strpos($raceDivPartsLine, "QUINELLA PLACE") === false){
             $balance -= $qinBets;
-            $lineParts1 = explode("\t", $raceDivParts[$key]);
-            $winningQPL1 = explode(",", $lineParts1[1]);
-            $winningAmount1 = str_replace(",", "", $lineParts1[2]);
-            $isWinner1 = array_intersect($winningQPL1, $selected);
-            $qplDiff1 = array_diff($winningQPL1, $isWinner1); 
-            if(empty($qplDiff1)) 
+            $lineParts = explode("\t", $raceDivParts[$key]);
+            $winningQin = explode(",", $lineParts[1]);
+            $winningAmount = str_replace(",", "", $lineParts[2]);
+            $isWinner = in_array($winningQin, $toQin);
+            if($isWinner)
             {
-                $balance += $unitBets / 10 * $winningAmount1;
+                $balance += $unitQinBet / 10 * $winningAmount;
             }
         }
     }
     return $balance;
 }
 
-function getTrioBalance($raceDate, $raceNumber, $selected, $unitBets = 10)
+function trioBalance($raceDate, $method)
 {
-    if(empty($selected)) return 0;
+    //1.get the bets
+    $betsFile = "data/bets/$raceDate" . "Set$method.php";
+    $allBets = include($betsFile);
+    $totalWon = 0;
+
+    for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) { 
+        //retrieve bets placed for race $raceNumber
+        if (!isset($allBets[$raceNumber])) {
+            continue;
+        }
+        $bets = $allBets[$raceNumber];
+        if(!isset($bets['TRIO'])) continue;
+        $selected = $bets['TRIO'];
+        if(empty($selected)) continue;
+        if(isset($bets['unitTrioBet'])) $unitTrioBet = $bets['unitTrioBet'];
+        else $unitTrioBet = 10;
+        $totalWon += getTrioBalance($raceDate, $raceNumber, $selected, $unitTrioBet);
+    }
+    return $totalWon;
+}
+
+function getTrioBalance($raceDate, $raceNumber, $banker, $unitTrioBet)
+{
+    $bankerParts = explode(' X ', $banker); 
+    $set1Parts = explode("-", $bankerParts[0]);
+    $set2Parts = explode("-", $bankerParts[1]);
+    $set3Parts = explode("-", $bankerParts[2]);
+    $toTrio = [];
+    foreach ($set1Parts as $val1) {
+        foreach ($set2Parts as $val2) {
+            foreach ($set3Parts as $val3) {
+                $item = [$val1, $val2, $val3];
+                sort($item);
+                $toTrio[] = $item;
+            }
+        }
+    }
+    
+    $trioBets = $unitTrioBet * count($toTrio);
+
     $balance = 0;
     $resultsFile = __DIR__ . "/data/results/$raceDate.html";
     if(!file_exists($resultsFile)) return $balance;
@@ -379,16 +415,14 @@ function getTrioBalance($raceDate, $raceNumber, $selected, $unitBets = 10)
     $raceDivParts = array_values(array_filter(array_map('trim', explode("\n", $raceDividends))));
     foreach ($raceDivParts as $key=>$raceDivPartsLine) {
         if(strpos($raceDivPartsLine, "TRIO") !== false){
-            $trioBets = $unitBets * combinations(count($selected), 3);
             $balance -= $trioBets;
-            $lineParts1 = explode("\t", $raceDivParts[$key]);
-            $winningQPL1 = explode(",", $lineParts1[1]);
-            $winningAmount1 = str_replace(",", "", $lineParts1[2]);
-            $isWinner1 = array_intersect($winningQPL1, $selected);
-            $qplDiff1 = array_diff($winningQPL1, $isWinner1); 
-            if(empty($qplDiff1)) 
+            $lineParts = explode("\t", $raceDivParts[$key]);
+            $winningTrio = explode(",", $lineParts[1]);
+            $winningAmount = str_replace(",", "", $lineParts[2]);
+            $isWinner = in_array($winningTrio, $toTrio);
+            if($isWinner)
             {
-                $balance += $unitBets / 10 * $winningAmount1;
+                $balance += $winningAmount;
             }
         }
     }
