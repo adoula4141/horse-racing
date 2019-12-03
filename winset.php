@@ -11,7 +11,7 @@ $balance = 0;
 $betsFile = "data/bets/$raceDate"."Set$setNumber.php";
 $allBets = include($betsFile);
 
-for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) { 
+for ($raceNumber=1; $raceNumber <= 2; $raceNumber++) { 
 	if($balance < 0) 
 	{
 		echo "Negative balance: $balance \n";

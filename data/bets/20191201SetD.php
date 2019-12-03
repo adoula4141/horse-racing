@@ -241,28 +241,4 @@ return [
 		'tceBets' => 240,
 		'totalBets' => 1010
 	],
-	'11' => [
-		/**
-		Race 11
-		*/
-		'WIN' => [1, 6, 5],
-		'PLACE' => [1, 6, 5],
-		'QUINELLA PLACE' => [5, 1, 6, 11],
-		'QUINELLA' => [5, 1, 6, 11],
-		'FIRST 4' => [5, 1, 6, 11],
-		'TRIO' => [5, 1, 6, 11],
-		'TIERCE' => [5, 1, 6, 11],
-		'winBets' => 300,
-		'unitWinBet' => 100,
-		'plaBets' => 300,
-		'unitPlaBet' => 100,
-		'qplBets' => 60,
-		'unitQplBet' => 10,
-		'qinBets' => 60,
-		'unitQinBet' => 10,
-		'f4Bets' => 10,
-		'trioBets' => 40,
-		'tceBets' => 240,
-		'totalBets' => 1010
-	],
 ];

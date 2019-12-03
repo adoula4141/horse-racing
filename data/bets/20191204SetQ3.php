@@ -5,8 +5,8 @@ return [
 		/**
 		Race 1
 		*/
-		'WIN' => [2, 7, 4, 1, 8],
-		'PLACE' => [2, 7, 4, 1, 8],
+		'WIN' => [8, 12],
+		'PLACE' => [8, 12],
 		'QUINELLA PLACE' => [8, 12],
 		'QUINELLA' => [8, 12],
 		'TRIO' => [2, 7, 4, 1, 8],
@@ -21,8 +21,8 @@ return [
 		/**
 		Race 2
 		*/
-		'WIN' => [2, 7, 4, 1, 8],
-		'PLACE' => [2, 7, 4, 1, 8],
+		'WIN' => [8, 12],
+		'PLACE' => [8, 12],
 		'QUINELLA PLACE' => [8, 12],
 		'QUINELLA' => [8, 12],
 		'TRIO' => [2, 7, 4, 1, 8],
@@ -37,8 +37,8 @@ return [
 		/**
 		Race 3
 		*/
-		'WIN' => [2, 7, 4, 1, 8],
-		'PLACE' => [2, 7, 4, 1, 8],
+		'WIN' => [8, 12],
+		'PLACE' => [8, 12],
 		'QUINELLA PLACE' => [8, 12],
 		'QUINELLA' => [8, 12],
 		'TRIO' => [2, 7, 4, 1, 8],
@@ -53,8 +53,8 @@ return [
 		/**
 		Race 4
 		*/
-		'WIN' => [2, 7, 4, 1, 8],
-		'PLACE' => [2, 7, 4, 1, 8],
+		'WIN' => [8, 12],
+		'PLACE' => [8, 12],
 		'QUINELLA PLACE' => [8, 12],
 		'QUINELLA' => [8, 12],
 		'TRIO' => [2, 7, 4, 1, 8],
@@ -69,8 +69,8 @@ return [
 		/**
 		Race 5
 		*/
-		'WIN' => [2, 7, 4, 1, 8],
-		'PLACE' => [2, 7, 4, 1, 8],
+		'WIN' => [8, 12],
+		'PLACE' => [8, 12],
 		'QUINELLA PLACE' => [8, 12],
 		'QUINELLA' => [8, 12],
 		'TRIO' => [2, 7, 4, 1, 8],
@@ -85,8 +85,8 @@ return [
 		/**
 		Race 6
 		*/
-		'WIN' => [2, 7, 4, 1, 8],
-		'PLACE' => [2, 7, 4, 1, 8],
+		'WIN' => [8, 12],
+		'PLACE' => [8, 12],
 		'QUINELLA PLACE' => [8, 12],
 		'QUINELLA' => [8, 12],
 		'TRIO' => [2, 7, 4, 1, 8],
@@ -101,8 +101,8 @@ return [
 		/**
 		Race 7
 		*/
-		'WIN' => [2, 7, 4, 1, 8],
-		'PLACE' => [2, 7, 4, 1, 8],
+		'WIN' => [8, 12],
+		'PLACE' => [8, 12],
 		'QUINELLA PLACE' => [8, 12],
 		'QUINELLA' => [8, 12],
 		'TRIO' => [2, 7, 4, 1, 8],
@@ -117,8 +117,8 @@ return [
 		/**
 		Race 8
 		*/
-		'WIN' => [2, 7, 4, 1, 8],
-		'PLACE' => [2, 7, 4, 1, 8],
+		'WIN' => [8, 12],
+		'PLACE' => [8, 12],
 		'QUINELLA PLACE' => [8, 12],
 		'QUINELLA' => [8, 12],
 		'TRIO' => [2, 7, 4, 1, 8],
@@ -133,8 +133,8 @@ return [
 		/**
 		Race 9
 		*/
-		'WIN' => [2, 7, 4, 1, 8],
-		'PLACE' => [2, 7, 4, 1, 8],
+		'WIN' => [8, 12],
+		'PLACE' => [8, 12],
 		'QUINELLA PLACE' => [8, 12],
 		'QUINELLA' => [8, 12],
 		'TRIO' => [2, 7, 4, 1, 8],

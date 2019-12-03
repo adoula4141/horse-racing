@@ -1,5 +1,7 @@
 <?php
 
+include __DIR__ .'/functions.php';
+
 $setNumber = trim($argv[1]);
 $raceDate = trim($argv[2]);
 
@@ -16,10 +18,6 @@ for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) {
 		echo "Negative balance: $balance \n";
 	}
 	//retrieve bets placed for race $raceNumber
-	if (!isset($allBets["$raceNumber"])) {
-		continue;
-	}
-	//retrieve bets placed for race $raceNumber
 	if (!isset($allBets[$raceNumber])) {
 		continue;
 	}
@@ -31,7 +29,7 @@ for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) {
 	if(isset($bets['unitTrioBet'])) $unitTrioBet = $bets['unitTrioBet'];
 	else $unitTrioBet = 10;
 
-	$trioBets = $unitTrioBet * count($toTrio);
+	$trioBets = $unitTrioBet * combinations(count($toTrio), 3);
 
 	//retrieve results for race $raceNumber
 	$raceStarts = strpos($content, "<R$raceNumber>");

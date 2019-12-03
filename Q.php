@@ -60,7 +60,10 @@ function getdata($raceDate, $totalRaces, $outputFile, $jockeyNamesAllRaces)
 
         $selection = array_values(array_unique(array_merge($qpl1, $qpl4)));
 
-        $toWin = $selection;
+        $toWin = [];
+        if(isset($selection[5])) $toWin[] = $selection[5];
+        elseif(isset($selection[4])) $toWin[] = $selection[4];
+
         $toPlace = $toWin;
 
         $toTrio = array_slice($list, 1, 5);
@@ -72,6 +75,11 @@ function getdata($raceDate, $totalRaces, $outputFile, $jockeyNamesAllRaces)
         $betting .= "\t\t QPL 2:\t" . implode(", ", $qpl2) . "\n";
         $betting .= "\t\t QPL 3:\t" . implode(", ", $qpl3) . "\n";
         $betting .= "\t\t QPL 4:\t" . implode(", ", $qpl4) . "\n";
+        $betting .= "\t\t List 1:\t" . implode(", ", $list1) . "\n";
+        $betting .= "\t\t List 2:\t" . implode(", ", $list2) . "\n";
+        $betting .= "\t\t List 3:\t" . implode(", ", $list3) . "\n";
+        $betting .= "\t\t List 4:\t" . implode(", ", $list4) . "\n";
+
         $betting .= "\t\t*/\n";
 
         $betting .= "\t\t'WIN' => [" . implode(", ", $toWin) . "],\n";

@@ -1,5 +1,7 @@
 <?php
 
+include __DIR__ .'/functions.php';
+
 $setNumber = trim($argv[1]);
 $raceDate = trim($argv[2]);
 
@@ -12,15 +14,22 @@ $betsFile = "data/bets/$raceDate" . "Set$setNumber.php";
 $allBets = include($betsFile);
 
 for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) { 
-	if($balance < 0) echo "Negative balance: $balance \n";
+	if ($balance < 0) {
+		echo "Negative balance: $balance \n";
+	}
 	//retrieve bets placed for race $raceNumber
 	if (!isset($allBets[$raceNumber])) {
 		continue;
 	}
 	$bets = $allBets[$raceNumber];
+
 	if(!isset($bets['TIERCE'])) continue;
 	$toTce = $bets['TIERCE'];
-	$tceBets = $bets['tceBets'];
+	
+	if(isset($bets['unitTceBet'])) $uniTceBet = $bets['uniTceBet'];
+	else $unitTceBet = 10;
+
+	$tceBets = $unitTceBet * permutations(count($toTce), 3);
 
 	//retrieve results for race $raceNumber
 	$raceStarts = strpos($content, "<R$raceNumber>");

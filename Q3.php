@@ -31,15 +31,18 @@ function getdata($raceDate, $totalRaces, $outputFile, $jockeyNamesAllRaces)
     for ($raceNumber = 1; $raceNumber <= $totalRaces; $raceNumber++) { 
         if(!raceExists($raceDate, $raceNumber)) continue;
 
-        $toWin = $selection;
-        $toPlace = $toWin;
-
         $qpl3 = [];
         if(isset($list2[1]) && !in_array($list2[1], $qpl3)) $qpl3[] = $list2[1];
         if(isset($list3[1]) && !in_array($list3[1], $qpl3)) $qpl3[] = $list3[1];
         if(isset($list3[2]) && !in_array($list3[2], $qpl3)) $qpl3[] = $list3[2];
 
         if(count($qpl3) < 2) $qpl3 = [];
+
+        if(count($qpl3) >= 3) $toTrio = $qpl3;
+        else $toTrio = $selection;
+
+        $toWin = $qpl3;
+        $toPlace = $toWin;
 
         $betting .= "\t'$raceNumber' => [\n";
         $betting .= "\t\t/**\n";
@@ -50,7 +53,7 @@ function getdata($raceDate, $totalRaces, $outputFile, $jockeyNamesAllRaces)
         $betting .= "\t\t'PLACE' => [" . implode(", ", $toPlace) . "],\n";
         $betting .= "\t\t'QUINELLA PLACE' => [" . implode(", ", $qpl3) . "],\n";
         $betting .= "\t\t'QUINELLA' => [" . implode(", ", $qpl3) . "],\n";
-        $betting .= "\t\t'TRIO' => [" . implode(", ", $selection) ."],\n";
+        $betting .= "\t\t'TRIO' => [" . implode(", ", $toTrio) ."],\n";
         $betting .= "\t\t'TIERCE' => [" . implode(", ", $selection) ."],\n";
         $betting .= "\t\t'FIRST 4' => [" . implode(", ", $selection) ."],\n";
         

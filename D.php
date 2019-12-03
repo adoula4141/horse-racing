@@ -3,9 +3,11 @@
 
 include __DIR__ . '/functions.php';
 
-$totalRaces = 11; //default
-
 $raceDate = trim($argv[1]);
+$inputFile = __DIR__ . "/data/racecard/$raceDate.php";
+$jockeyNamesAllRaces = include($inputFile);
+
+$totalRaces = count($jockeyNamesAllRaces);
 
 $outputFile = "data/bets/$raceDate"."SetD.php";
 

@@ -138,7 +138,7 @@ function winBalance($raceDate, $method)
     $allBets = include($betsFile);
     $totalWon = 0;
 
-    for ($raceNumber=1; $raceNumber <= 2; $raceNumber++) { 
+    for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) { 
         //retrieve bets placed for race $raceNumber
         if (!isset($allBets[$raceNumber])) {
             continue;
