@@ -16,28 +16,21 @@ for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) {
 		echo "Negative balance: $balance \n";
 	}
 	//retrieve bets placed for race $raceNumber
+	if (!isset($allBets["$raceNumber"])) {
+		continue;
+	}
+	//retrieve bets placed for race $raceNumber
 	if (!isset($allBets[$raceNumber])) {
 		continue;
 	}
 	$bets = $allBets[$raceNumber];
+
 	if(!isset($bets['TRIO'])) continue;
-	$banker = $bets['TRIO'];
-	$bankerParts = explode(' X ', $banker); 
-	$set1Parts = explode("-", $bankerParts[0]);
-	$set2Parts = explode("-", $bankerParts[1]);
-	$set3Parts = explode("-", $bankerParts[2]);
-	$toTrio = [];
-	foreach ($set1Parts as $val1) {
-		foreach ($set2Parts as $val2) {
-			foreach ($set3Parts as $val3) {
-				$item = [$val1, $val2, $val3];
-				sort($item);
-				$toTrio[] = $item;
-			}
-		}
-	}
+	$toTrio = $bets['TRIO'];
+	
 	if(isset($bets['unitTrioBet'])) $unitTrioBet = $bets['unitTrioBet'];
 	else $unitTrioBet = 10;
+
 	$trioBets = $unitTrioBet * count($toTrio);
 
 	//retrieve results for race $raceNumber
@@ -53,8 +46,9 @@ for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) {
 			$lineParts = explode("\t", $raceDivParts[$key]);
 			$winningTrio = explode(",", $lineParts[1]);
 			$winningAmount = str_replace(",", "", $lineParts[2]);
-			$isWinner = in_array($winningTrio, $toTrio);
-			if($isWinner)
+			$isWinner = array_intersect($winningTrio, $toTrio);
+			$trioDiff = array_diff($winningTrio, $isWinner); 
+			if(empty($trioDiff)) 
 			{
 				echo "Race: $raceNumber, Trio winner: $lineParts[1], won $lineParts[2]\n";
 				$balance += $winningAmount;
@@ -65,4 +59,3 @@ for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) {
 }
 
 echo "Final Balance: " . $balance . "\n\n";
-

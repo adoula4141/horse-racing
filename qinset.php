@@ -11,29 +11,19 @@ $balance = 0;
 $betsFile = "data/bets/$raceDate" . "Set$setNumber.php";
 $allBets = include($betsFile);
 
-for ($raceNumber = 1; $raceNumber <= 11; $raceNumber++) { 
-	if ($balance < 0) {
-		echo "Negative balance: $balance \n";
-	}
+for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) { 
+	// if($balance > 100) 
+	// {
+	// 	echo "Final balance: $balance \n";
+	// 	exit();
+	// }
 	//retrieve bets placed for race $raceNumber
-	if (!isset($allBets[$raceNumber])) {
+	if (!isset($allBets["$raceNumber"])) {
 		continue;
 	}
-	$bets = $allBets[$raceNumber];
+	$bets = $allBets["$raceNumber"];
 	if(!isset($bets['QUINELLA'])) continue;
-	$banker = $bets['QUINELLA'];
-	$bankerParts = explode(' X ', $banker); 
-	$set1Parts = explode("-", $bankerParts[0]);
-	$set2Parts = explode("-", $bankerParts[1]);
-	$toQin = [];
-	foreach ($set1Parts as $val1) {
-		foreach ($set2Parts as $val2) {
-			if ($val1 !== $val2 && !in_array([$val1, $val2], $toQin) && !in_array([$val2, $val1], $toQin)) {
-				if($val1 < $val2) $toQin[] = [$val1, $val2];
-				else $toQin[] = [$val2, $val1];
-			}
-		}
-	}
+	$toQin = $bets['QUINELLA'];
 	if(isset($bets['unitQinBet'])) $unitQinBet = $bets['unitQinBet'];
 	else $unitQinBet = 10;
 	$qinBets = $unitQinBet * count($toQin);
@@ -52,11 +42,11 @@ for ($raceNumber = 1; $raceNumber <= 11; $raceNumber++) {
 
 			$lineParts = explode("\t", $raceDivParts[$key]);
 			$winningQIN = explode(",", $lineParts[1]);
-			sort($winningQIN);
 			$winningAmount = str_replace(",", "", $lineParts[2]);
 			$winningAmount = (10/$unitQinBet) * $winningAmount;
-			$isWinner = in_array($winningQIN, $toQin);
-			if($isWinner)
+			$isWinner = array_intersect($winningQIN, $toQin);
+			$qinDiff = array_diff($winningQIN, $isWinner); 
+			if(empty($qinDiff)) 
 			{
 				echo "Race: $raceNumber, QIN winner: $lineParts[1], won $lineParts[2]\n";
 				$balance += $winningAmount;
@@ -67,4 +57,3 @@ for ($raceNumber = 1; $raceNumber <= 11; $raceNumber++) {
 }
 
 echo "Final Balance: " . $balance . "\n\n";
-
