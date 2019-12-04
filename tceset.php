@@ -52,7 +52,7 @@ for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) {
 			{
 				if(count($toTce) >= 6) $winningAmount /= 10;
 				echo "Race: $raceNumber, Tierce winner: $lineParts[1], won $winningAmount\n";
-				$balance += $unitTceBet * $winningAmount;
+				$balance += $unitTceBet / 10 * $winningAmount;
 			}
 			
 		}
