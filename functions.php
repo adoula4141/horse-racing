@@ -118,7 +118,7 @@ function plaBalance($raceDate, $method)
     $allBets = include($betsFile);
     $totalWon = 0;
 
-    for ($raceNumber=1; $raceNumber <= 7; $raceNumber++) { 
+    for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) { 
         //retrieve bets placed for race $raceNumber
         if (!isset($allBets[$raceNumber])) {
             continue;
@@ -203,7 +203,7 @@ function tceBalance($raceDate, $method)
     $allBets = include($betsFile);
     $totalWon = 0;
 
-    for ($raceNumber=1; $raceNumber <= 7; $raceNumber++) { 
+    for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) { 
         //retrieve bets placed for race $raceNumber
         if (!isset($allBets[$raceNumber])) {
             continue;
@@ -372,7 +372,7 @@ function trioBalance($raceDate, $method)
     $allBets = include($betsFile);
     $totalWon = 0;
 
-    for ($raceNumber=1; $raceNumber <= 7; $raceNumber++) { 
+    for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) { 
         //retrieve bets placed for race $raceNumber
         if (!isset($allBets[$raceNumber])) {
             continue;
