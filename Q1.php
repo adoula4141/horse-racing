@@ -42,7 +42,7 @@ function getdata($raceDate, $totalRaces, $outputFile, $jockeyNamesAllRaces)
         else $toTrio = $selection;
 
         $toWin = $qpl1;
-        $toPlace = $toWin;
+        $toPlace = array_slice($toWin, 0, 2);
         
         $betting .= "\t'$raceNumber' => [\n";
         $betting .= "\t\t/**\n";

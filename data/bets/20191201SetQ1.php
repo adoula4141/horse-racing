@@ -6,7 +6,7 @@ return [
 		Race 1
 		*/
 		'WIN' => [13, 3, 11],
-		'PLACE' => [13, 3, 11],
+		'PLACE' => [13, 3],
 		'QUINELLA PLACE' => [13, 3, 11],
 		'QUINELLA' => [13, 3, 11],
 		'TRIO' => [13, 3, 11],
@@ -22,7 +22,7 @@ return [
 		Race 2
 		*/
 		'WIN' => [13, 3, 11],
-		'PLACE' => [13, 3, 11],
+		'PLACE' => [13, 3],
 		'QUINELLA PLACE' => [13, 3, 11],
 		'QUINELLA' => [13, 3, 11],
 		'TRIO' => [13, 3, 11],
@@ -38,7 +38,7 @@ return [
 		Race 3
 		*/
 		'WIN' => [13, 3, 11],
-		'PLACE' => [13, 3, 11],
+		'PLACE' => [13, 3],
 		'QUINELLA PLACE' => [13, 3, 11],
 		'QUINELLA' => [13, 3, 11],
 		'TRIO' => [13, 3, 11],
@@ -54,7 +54,7 @@ return [
 		Race 4
 		*/
 		'WIN' => [13, 3, 11],
-		'PLACE' => [13, 3, 11],
+		'PLACE' => [13, 3],
 		'QUINELLA PLACE' => [13, 3, 11],
 		'QUINELLA' => [13, 3, 11],
 		'TRIO' => [13, 3, 11],
@@ -70,7 +70,7 @@ return [
 		Race 5
 		*/
 		'WIN' => [13, 3, 11],
-		'PLACE' => [13, 3, 11],
+		'PLACE' => [13, 3],
 		'QUINELLA PLACE' => [13, 3, 11],
 		'QUINELLA' => [13, 3, 11],
 		'TRIO' => [13, 3, 11],
@@ -86,7 +86,7 @@ return [
 		Race 6
 		*/
 		'WIN' => [13, 3, 11],
-		'PLACE' => [13, 3, 11],
+		'PLACE' => [13, 3],
 		'QUINELLA PLACE' => [13, 3, 11],
 		'QUINELLA' => [13, 3, 11],
 		'TRIO' => [13, 3, 11],
@@ -102,7 +102,7 @@ return [
 		Race 7
 		*/
 		'WIN' => [13, 3, 11],
-		'PLACE' => [13, 3, 11],
+		'PLACE' => [13, 3],
 		'QUINELLA PLACE' => [13, 3, 11],
 		'QUINELLA' => [13, 3, 11],
 		'TRIO' => [13, 3, 11],
@@ -118,7 +118,7 @@ return [
 		Race 8
 		*/
 		'WIN' => [13, 3, 11],
-		'PLACE' => [13, 3, 11],
+		'PLACE' => [13, 3],
 		'QUINELLA PLACE' => [13, 3, 11],
 		'QUINELLA' => [13, 3, 11],
 		'TRIO' => [13, 3, 11],
@@ -134,7 +134,7 @@ return [
 		Race 9
 		*/
 		'WIN' => [13, 3, 11],
-		'PLACE' => [13, 3, 11],
+		'PLACE' => [13, 3],
 		'QUINELLA PLACE' => [13, 3, 11],
 		'QUINELLA' => [13, 3, 11],
 		'TRIO' => [13, 3, 11],
@@ -150,7 +150,7 @@ return [
 		Race 10
 		*/
 		'WIN' => [13, 3, 11],
-		'PLACE' => [13, 3, 11],
+		'PLACE' => [13, 3],
 		'QUINELLA PLACE' => [13, 3, 11],
 		'QUINELLA' => [13, 3, 11],
 		'TRIO' => [13, 3, 11],

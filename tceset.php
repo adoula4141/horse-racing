@@ -13,7 +13,7 @@ $balance = 0;
 $betsFile = "data/bets/$raceDate" . "Set$setNumber.php";
 $allBets = include($betsFile);
 
-for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) { 
+for ($raceNumber=1; $raceNumber <= 7; $raceNumber++) { 
 	if ($balance < 0) {
 		echo "Negative balance: $balance \n";
 	}
@@ -28,6 +28,8 @@ for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) {
 	
 	if(isset($bets['unitTceBet'])) $uniTceBet = $bets['uniTceBet'];
 	else $unitTceBet = 10;
+
+	if(count($toTce) >= 6) $unitTceBet = 1;
 
 	$tceBets = $unitTceBet * permutations(count($toTce), 3);
 
@@ -50,7 +52,7 @@ for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) {
 			{
 				if(count($toTce) >= 6) $winningAmount /= 10;
 				echo "Race: $raceNumber, Tierce winner: $lineParts[1], won $winningAmount\n";
-				$balance += $winningAmount;
+				$balance += $unitTceBet * $winningAmount;
 			}
 			
 		}

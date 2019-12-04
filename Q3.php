@@ -36,26 +36,30 @@ function getdata($raceDate, $totalRaces, $outputFile, $jockeyNamesAllRaces)
         if(isset($list3[1]) && !in_array($list3[1], $qpl3)) $qpl3[] = $list3[1];
         if(isset($list3[2]) && !in_array($list3[2], $qpl3)) $qpl3[] = $list3[2];
 
-        if(count($qpl3) < 2) $qpl3 = [];
+        $numberOfHorses = count($jockeyNamesAllRaces[$raceNumber]);
+        $list4 = [];
 
-        if(count($qpl3) >= 3) $toTrio = $qpl3;
-        else $toTrio = $selection;
+        for ($i = 1; $i <= $numberOfHorses ; $i++) { 
+            if(!in_array($i, $list)) $list4[] = $i;
+        }
 
-        $toWin = $qpl3;
-        $toPlace = $toWin;
+        $qpl3 = [];
+        if(isset($list1[2]) && !in_array($list1[2], $qpl3)) $qpl3[] = $list1[2];
+        if(isset($list1[3]) && !in_array($list1[3], $qpl3)) $qpl3[] = $list1[3];
+        if(isset($list2[2]) && !in_array($list2[2], $qpl3)) $qpl3[] = $list2[2];
 
         $betting .= "\t'$raceNumber' => [\n";
         $betting .= "\t\t/**\n";
         $betting .= "\t\tRace $raceNumber\n";
         $betting .= "\t\t*/\n";
 
-        $betting .= "\t\t'WIN' => [" . implode(", ", $toWin) . "],\n";
-        $betting .= "\t\t'PLACE' => [" . implode(", ", $toPlace) . "],\n";
+        $betting .= "\t\t'WIN' => [" . implode(", ", $qpl3) . "],\n";
+        $betting .= "\t\t'PLACE' => [" . implode(", ", $qpl3) . "],\n";
         $betting .= "\t\t'QUINELLA PLACE' => [" . implode(", ", $qpl3) . "],\n";
         $betting .= "\t\t'QUINELLA' => [" . implode(", ", $qpl3) . "],\n";
-        $betting .= "\t\t'TRIO' => [" . implode(", ", $toTrio) ."],\n";
-        $betting .= "\t\t'TIERCE' => [" . implode(", ", $selection) ."],\n";
-        $betting .= "\t\t'FIRST 4' => [" . implode(", ", $selection) ."],\n";
+        $betting .= "\t\t'TRIO' => [" . implode(", ", $qpl3) ."],\n";
+        $betting .= "\t\t'TIERCE' => [" . implode(", ", $qpl3) ."],\n";
+        $betting .= "\t\t'FIRST 4' => [" . implode(", ", $qpl3) ."],\n";
         
         $betting .= "\t\t'unitWinBet' => $unitWinBet,\n";
         $betting .= "\t\t'unitPlaBet' => $unitPlaBet,\n";
