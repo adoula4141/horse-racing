@@ -18,6 +18,7 @@ function getdata($raceDate, $totalRaces, $outputFile)
 
     $list = getSelection($raceDate, $totalRaces);
     $toWin = array_slice($list, 0, 2);
+    $toTrio = array_slice($list, 1, 5);
 
     $listR2 = [];
     $horses = getWeights($raceDate, 2, 'jockeyNames', 'k');   
@@ -61,8 +62,8 @@ function getdata($raceDate, $totalRaces, $outputFile)
         $betting .= "\t\t'PLACE' => [" . implode(", ", $toPlace) . "],\n";
         $betting .= "\t\t'QUINELLA PLACE' => [" . implode(", ", $selection) . "],\n";
         $betting .= "\t\t'QUINELLA' => [" . implode(", ", $selection) . "],\n";
-        $betting .= "\t\t'TRIO' => [" . implode(", ", $selection) ."],\n";
-        $betting .= "\t\t'TIERCE' => [" . implode(", ", $selection) ."],\n";
+        $betting .= "\t\t'TRIO' => [" . implode(", ", $toTrio) ."],\n";
+        $betting .= "\t\t'TIERCE' => [" . implode(", ", $toTrio) ."],\n";
         $betting .= "\t\t'FIRST 4' => [" . implode(", ", $selection) ."],\n";
         
         $betting .= "\t\t'unitWinBet' => $unitWinBet,\n";

@@ -33,9 +33,8 @@ asort($raceDates);
 
 //2. Get the balance for each racing date, betting style and set.
 // $styles = [ 'trio' ];
-$styles = [ 'win', 'pla', 'qpl'];
-// $methods = [ 'Q', 'D', 'Q1', 'Q2', 'Q3' ];
-$methods = [ 'S1', 'Q1', 'Q2' ];
+$styles = [ 'win', 'pla', 'qpl', 'qin', 'trio'];
+$methods = [ 'S1' ];
 
 $totalCount = count($styles) * count($methods);
 
