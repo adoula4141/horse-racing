@@ -32,8 +32,8 @@ if ($handle = opendir($resultsDir)) {
 asort($raceDates);
 
 //2. Get the balance for each racing date, betting style and set.
-// $styles = [ 'trio' ];
-$styles = [ 'win', 'pla', 'qpl', 'qin', 'trio'];
+// $styles = [ 'trio1' ];
+$styles = [ 'win', 'pla', 'qpl', 'qin', 'trio1', 'trio2', 'tce' ];
 $methods = [ 'S1' ];
 
 $totalCount = count($styles) * count($methods);
@@ -81,8 +81,14 @@ for ($key=0; $key < count($raceDates); $key++) {
 					$lineSum += $amount;
 					break;
 
-				case 'trio':
-					$amount = trioBalance($raceDate, $method);
+				case 'trio1':
+					$amount = trioBalance($raceDate, $method, 1);
+					$header[] = $amount;
+					$lineSum += $amount;
+					break;
+
+				case 'trio2':
+					$amount = trioBalance($raceDate, $method, 2);
 					$header[] = $amount;
 					$lineSum += $amount;
 					break;

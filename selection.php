@@ -20,7 +20,7 @@ asort($raceDates);
 
 
 //2. Get the balance for each racing date, betting style and set.
-$methods = [ 'win_S1', 'pla_S1', 'qpl_S1', 'trio_S1' ];
+$methods = [ 'win_S1', 'qpl_S1', 'trio1_S1', 'trio2_S1' ];
 
 $balancesMatrix = [];
 $header = ["race_date"];
@@ -65,8 +65,14 @@ for ($key=0; $key < count($raceDates); $key++) {
 				$lineSum += $amount;
 				break;
 
-			case 'trio':
-				$amount = trioBalance($raceDate, $set);
+			case 'trio1':
+				$amount = trioBalance($raceDate, $set, 1);
+				$header[] = $amount;
+				$lineSum += $amount;
+				break;
+
+			case 'trio2':
+				$amount = trioBalance($raceDate, $set, 2);
 				$header[] = $amount;
 				$lineSum += $amount;
 				break;

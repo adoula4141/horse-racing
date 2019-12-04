@@ -50,6 +50,14 @@ function getdata($raceDate, $totalRaces, $outputFile)
     $unitQplBet = 10;
     $unitQinBet = 10;
 
+    if(count($toPlace) >= 3) $toTrio1 = $toPlace;
+    else $toTrio1 = [];
+
+    $toTrio2 = $toTrio;
+
+    $toTce = array_values(array_unique(array_merge($toTrio1, $toTrio2)));
+    $first4 = $toTce;
+
     for ($raceNumber = 1; $raceNumber <= $totalRaces; $raceNumber++) { 
         if(!raceExists($raceDate, $raceNumber)) continue;
 
@@ -62,9 +70,10 @@ function getdata($raceDate, $totalRaces, $outputFile)
         $betting .= "\t\t'PLACE' => [" . implode(", ", $toPlace) . "],\n";
         $betting .= "\t\t'QUINELLA PLACE' => [" . implode(", ", $selection) . "],\n";
         $betting .= "\t\t'QUINELLA' => [" . implode(", ", $selection) . "],\n";
-        $betting .= "\t\t'TRIO' => [" . implode(", ", $toTrio) ."],\n";
-        $betting .= "\t\t'TIERCE' => [" . implode(", ", $toTrio) ."],\n";
-        $betting .= "\t\t'FIRST 4' => [" . implode(", ", $selection) ."],\n";
+        $betting .= "\t\t'TRIO 1' => [" . implode(", ", $toTrio1) ."],\n";
+        $betting .= "\t\t'TRIO 2' => [" . implode(", ", $toTrio2) ."],\n";
+        $betting .= "\t\t'TIERCE' => [" . implode(", ", $toTce) ."],\n";
+        $betting .= "\t\t'FIRST 4' => [" . implode(", ", $first4) ."],\n";
         
         $betting .= "\t\t'unitWinBet' => $unitWinBet,\n";
         $betting .= "\t\t'unitPlaBet' => $unitPlaBet,\n";

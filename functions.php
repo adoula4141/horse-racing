@@ -365,7 +365,7 @@ function getTrioBalance($raceDate, $raceNumber, $selected, $unitBets = 10)
     return $balance;
 }
 
-function trioBalance($raceDate, $method)
+function trioBalance($raceDate, $method, $trioNumber)
 {
     //1.get the bets
     $betsFile = "data/bets/$raceDate" . "Set$method.php";
@@ -378,8 +378,8 @@ function trioBalance($raceDate, $method)
             continue;
         }
         $bets = $allBets[$raceNumber];
-        if(!isset($bets['TRIO'])) continue;
-        $selected = $bets['TRIO'];
+        if(!isset($bets["TRIO $trioNumber"])) continue;
+        $selected = $bets["TRIO $trioNumber"];
         if(empty($selected)) continue;
         if(isset($bets['unitTrioBet'])) $unitTrioBet = $bets['unitTrioBet'];
         else $unitTrioBet = 10;
