@@ -1,5 +1,7 @@
 <?php
 
+include __DIR__ . '/functions.php';
+
 $raceDate = trim($argv[1]);
 
 if(strlen($raceDate) == 4) $raceDate = "2019$raceDate";
@@ -39,6 +41,7 @@ for ($raceNumber = 1; $raceNumber <= $totalRaces; $raceNumber++) {
 	for ($i=1; $i < count($first_step); $i++) { 
 		if (strpos($first_step[$i], 'jockeycode')) {
 			$jockeyName = strip_tags($first_step[$i]);
+			$jockeyName = jockeyName($jockeyName);
 			$jockeyName = trim(preg_replace('/[\t|\n|\s{2,}]/', '', $jockeyName));
 			echo $jockeyName . "\n"; //echo for debugging purposes
 			if(!empty($jockeyName)) {
