@@ -64,7 +64,7 @@ function getWeights($raceDate, $raceNumber, $search, $character)
 
 function getJockeyNames($raceDate, $raceNumber)
 {
-    $inputFile = __DIR__ . "/data" . DIRECTORY_SEPARATOR . "" . DIRECTORY_SEPARATOR . "$raceDate.php";
+    $inputFile = __DIR__ . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR . "racecard" . DIRECTORY_SEPARATOR . "$raceDate.php";
     if(!file_exists($inputFile)) return [];
     $jockeyNamesAllRaces = include($inputFile);
     return $jockeyNamesAllRaces[$raceNumber];
@@ -72,7 +72,7 @@ function getJockeyNames($raceDate, $raceNumber)
 
 function raceExists($raceDate, $raceNumber)
 {
-    $inputFile = __DIR__ . "/data" . DIRECTORY_SEPARATOR . "" . DIRECTORY_SEPARATOR . "$raceDate.php";
+    $inputFile = __DIR__ . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR . "racecard" . DIRECTORY_SEPARATOR . "$raceDate.php";
     if(!file_exists($inputFile)) return false;
     $jockeyNamesAllRaces = include($inputFile);
     return (isset($jockeyNamesAllRaces[$raceNumber]) && !empty($jockeyNamesAllRaces[$raceNumber]));
