@@ -19,7 +19,7 @@ A VALUE OF THE MATRIX IS THE FINAL BALANCE USING THAT BETTING METHOD FOR THAT DA
 $raceDates = getRaceDates();
 //2. Get the balance for each racing date, betting style and set.
 // $styles = [ 'trio1' ];
-$styles = [ 'win', 'pla', 'qpl', 'qin', 'pwin', 'ppla', 'pqpl', 'pqin' ];
+$styles = [ 'win', 'pla', 'qpl', 'qin' ];
 $methods = [ 'S1' ];
 
 $totalCount = count($styles) * count($methods);
@@ -49,20 +49,8 @@ for ($key=0; $key < count($raceDates); $key++) {
 					$lineSum += $amount;
 					break;
 
-				case 'ppla':
-					$amount = pplaBalance($raceDate, $method);
-					$header[] = $amount;
-					$lineSum += $amount;
-					break;
-
 				case 'win':
 					$amount = winBalance($raceDate, $method);
-					$header[] = $amount;
-					$lineSum += $amount;
-					break;
-
-				case 'pwin':
-					$amount = pwinBalance($raceDate, $method);
 					$header[] = $amount;
 					$lineSum += $amount;
 					break;
@@ -73,20 +61,8 @@ for ($key=0; $key < count($raceDates); $key++) {
 					$lineSum += $amount;
 					break;
 
-				case 'pqin':
-					$amount = pqinBalance($raceDate, $method);
-					$header[] = $amount;
-					$lineSum += $amount;
-					break;
-
 				case 'qpl':
 					$amount = qplBalance($raceDate, $method);
-					$header[] = $amount;
-					$lineSum += $amount;
-					break;
-
-				case 'pqpl':
-					$amount = pqplBalance($raceDate, $method);
 					$header[] = $amount;
 					$lineSum += $amount;
 					break;

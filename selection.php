@@ -6,7 +6,7 @@ include __DIR__ . "/functions.php";
 $raceDates = getRaceDates();
 
 //2. Get the balance for each racing date, betting style and set.
-$methods = [ 'qpl_S1', 'pqpl_S1', 'trio1_S1', 'ptrio1_S1', 'trio2_S1', 'ptrio2_S1' ];
+$methods = [ 'win_S1', 'qpl_S1' ];
 
 $balancesMatrix = [];
 $header = ["race_date"];
@@ -33,20 +33,8 @@ for ($key=0; $key < count($raceDates); $key++) {
 				$lineSum += $amount;
 				break;
 
-			case 'ppla':
-				$amount = pplaBalance($raceDate, $set);
-				$header[] = $amount;
-				$lineSum += $amount;
-				break;
-
 			case 'win':
 				$amount = winBalance($raceDate, $set);
-				$header[] = $amount;
-				$lineSum += $amount;
-				break;
-
-			case 'pwin':
-				$amount = pwinBalance($raceDate, $set);
 				$header[] = $amount;
 				$lineSum += $amount;
 				break;
@@ -57,20 +45,8 @@ for ($key=0; $key < count($raceDates); $key++) {
 				$lineSum += $amount;
 				break;
 
-			case 'pqin':
-				$amount = pqinBalance($raceDate, $set);
-				$header[] = $amount;
-				$lineSum += $amount;
-				break;
-
 			case 'qpl':
 				$amount = qplBalance($raceDate, $set);
-				$header[] = $amount;
-				$lineSum += $amount;
-				break;
-
-			case 'pqpl':
-				$amount = pqplBalance($raceDate, $set);
 				$header[] = $amount;
 				$lineSum += $amount;
 				break;
@@ -81,20 +57,8 @@ for ($key=0; $key < count($raceDates); $key++) {
 				$lineSum += $amount;
 				break;
 
-			case 'ptrio1':
-				$amount = ptrioBalance($raceDate, $set, 1);
-				$header[] = $amount;
-				$lineSum += $amount;
-				break;
-
 			case 'trio2':
 				$amount = trioBalance($raceDate, $set, 2);
-				$header[] = $amount;
-				$lineSum += $amount;
-				break;
-
-			case 'ptrio2':
-				$amount = ptrioBalance($raceDate, $set, 2);
 				$header[] = $amount;
 				$lineSum += $amount;
 				break;

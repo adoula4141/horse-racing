@@ -9,7 +9,7 @@ foreach ($totals as $value) {
 	$groups[$value] = [];
 }
 
-$raceDates = getOpenRaceDates();
+$raceDates = getRaceCardRaceDates();
 
 foreach ($raceDates as $raceDate) {
 	$total = ($raceDate[4] + $raceDate[5] + $raceDate[6] + $raceDate[7]) % 9;

@@ -6,7 +6,6 @@ include __DIR__ . '/functions.php';
 $raceDate = trim($argv[1]);
 $inputFile = __DIR__ . "/data/racecard/$raceDate.php";
 $jockeyNamesAllRaces = include($inputFile);
-
 $totalRaces = count($jockeyNamesAllRaces);
 
 /**
@@ -20,8 +19,12 @@ function getdata($raceDate, $totalRaces, $outputFile)
     $betting = "<?php\n\n";
     $betting .= "return [\n";
 
+    $toWin = win($raceDate);
+
+    $toWin = array_slice($toWin, 0, 5);
+
     $list = getSelection($raceDate, $totalRaces);
-    $toWin = array_slice($list, 0, 2);
+    $headList = array_slice($list, 0, 2);
     $toTrio = array_slice($list, 1, 5);
 
     $listR2 = [];
@@ -31,7 +34,7 @@ function getdata($raceDate, $totalRaces, $outputFile)
     $horses = getWeights($raceDate, 2, 'jockeyNames', 'o');   
     if(isset($horses[0]) && !in_array($horses[0], $listR2)) $listR2[] = $horses[0];
 
-    $selection = array_values(array_unique(array_merge($toWin, $listR2)));
+    $selection = array_values(array_unique(array_merge($headList, $listR2)));
     $dList = [];
     $horses = getWeights($raceDate, 1, 'jockeyNames', 'k');   
     if(isset($horses[0]) && !in_array($horses[0], $dList)) $dList[] = $horses[0];
@@ -46,7 +49,6 @@ function getdata($raceDate, $totalRaces, $outputFile)
     $selection = array_values(array_unique(array_merge($mSet, $dSet)));
     $selection = array_slice($selection, 0, 3);
 
-    $toWin = array_slice($selection, 0, 2);
     $toPlace = $selection;
     sort($toPlace);
 

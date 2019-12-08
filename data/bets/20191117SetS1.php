@@ -5,13 +5,13 @@ return [
 		/**
 		Race 1
 		*/
-		'WIN' => [2, 13],
+		'WIN' => [4, 7, 11],
 		'PLACE' => [2, 8, 13],
 		'QUINELLA PLACE' => [2, 8, 13],
 		'QUINELLA' => [2, 8, 13],
 		'TRIO 1' => [2, 8, 13],
 		'TRIO 2' => [4, 6, 11, 12, 13],
-		'TIERCE' => [2, 4, 6, 8, 11, 12, 13], //4, 11
+		'TIERCE' => [2, 4, 6, 8, 11, 12, 13],
 		'FIRST 4' => [2, 4, 6, 8, 11, 12, 13],
 		'unitWinBet' => 100,
 		'unitPlaBet' => 100,
@@ -22,7 +22,7 @@ return [
 		/**
 		Race 2
 		*/
-		'WIN' => [2, 13],
+		'WIN' => [4, 7, 11],
 		'PLACE' => [2, 8, 13],
 		'QUINELLA PLACE' => [2, 8, 13],
 		'QUINELLA' => [2, 8, 13],
@@ -39,7 +39,7 @@ return [
 		/**
 		Race 3
 		*/
-		'WIN' => [2, 13],
+		'WIN' => [4, 7, 11],
 		'PLACE' => [2, 8, 13],
 		'QUINELLA PLACE' => [2, 8, 13],
 		'QUINELLA' => [2, 8, 13],
@@ -56,7 +56,7 @@ return [
 		/**
 		Race 4
 		*/
-		'WIN' => [2, 13],
+		'WIN' => [4, 7, 11],
 		'PLACE' => [2, 8, 13],
 		'QUINELLA PLACE' => [2, 8, 13],
 		'QUINELLA' => [2, 8, 13],
@@ -73,7 +73,7 @@ return [
 		/**
 		Race 5
 		*/
-		'WIN' => [2, 13],
+		'WIN' => [4, 7, 11],
 		'PLACE' => [2, 8, 13],
 		'QUINELLA PLACE' => [2, 8, 13],
 		'QUINELLA' => [2, 8, 13],
@@ -90,7 +90,7 @@ return [
 		/**
 		Race 6
 		*/
-		'WIN' => [2, 13],
+		'WIN' => [4, 7, 11],
 		'PLACE' => [2, 8, 13],
 		'QUINELLA PLACE' => [2, 8, 13],
 		'QUINELLA' => [2, 8, 13],
@@ -107,7 +107,7 @@ return [
 		/**
 		Race 7
 		*/
-		'WIN' => [2, 13],
+		'WIN' => [4, 7, 11],
 		'PLACE' => [2, 8, 13],
 		'QUINELLA PLACE' => [2, 8, 13],
 		'QUINELLA' => [2, 8, 13],
@@ -124,7 +124,7 @@ return [
 		/**
 		Race 8
 		*/
-		'WIN' => [2, 13],
+		'WIN' => [4, 7, 11],
 		'PLACE' => [2, 8, 13],
 		'QUINELLA PLACE' => [2, 8, 13],
 		'QUINELLA' => [2, 8, 13],
@@ -141,7 +141,7 @@ return [
 		/**
 		Race 9
 		*/
-		'WIN' => [2, 13],
+		'WIN' => [4, 7, 11],
 		'PLACE' => [2, 8, 13],
 		'QUINELLA PLACE' => [2, 8, 13],
 		'QUINELLA' => [2, 8, 13],
@@ -158,7 +158,7 @@ return [
 		/**
 		Race 10
 		*/
-		'WIN' => [2, 13],
+		'WIN' => [4, 7, 11],
 		'PLACE' => [2, 8, 13],
 		'QUINELLA PLACE' => [2, 8, 13],
 		'QUINELLA' => [2, 8, 13],

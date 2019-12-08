@@ -5,13 +5,13 @@ return [
 		/**
 		Race 1
 		*/
-		'WIN' => [12, 2],
+		'WIN' => [1, 7],
 		'PLACE' => [2, 12],
 		'QUINELLA PLACE' => [2, 12],
 		'QUINELLA' => [2, 12],
 		'TRIO 1' => [],
 		'TRIO 2' => [2, 6, 7, 8, 11],
-		'TIERCE' => [2, 6, 7, 8, 11], //6, 7
+		'TIERCE' => [2, 6, 7, 8, 11],
 		'FIRST 4' => [2, 6, 7, 8, 11],
 		'unitWinBet' => 100,
 		'unitPlaBet' => 100,
@@ -22,7 +22,7 @@ return [
 		/**
 		Race 2
 		*/
-		'WIN' => [12, 2],
+		'WIN' => [1, 7],
 		'PLACE' => [2, 12],
 		'QUINELLA PLACE' => [2, 12],
 		'QUINELLA' => [2, 12],
@@ -39,7 +39,7 @@ return [
 		/**
 		Race 3
 		*/
-		'WIN' => [12, 2],
+		'WIN' => [1, 7],
 		'PLACE' => [2, 12],
 		'QUINELLA PLACE' => [2, 12],
 		'QUINELLA' => [2, 12],
@@ -56,7 +56,7 @@ return [
 		/**
 		Race 4
 		*/
-		'WIN' => [12, 2],
+		'WIN' => [1, 7],
 		'PLACE' => [2, 12],
 		'QUINELLA PLACE' => [2, 12],
 		'QUINELLA' => [2, 12],
@@ -73,7 +73,7 @@ return [
 		/**
 		Race 5
 		*/
-		'WIN' => [12, 2],
+		'WIN' => [1, 7],
 		'PLACE' => [2, 12],
 		'QUINELLA PLACE' => [2, 12],
 		'QUINELLA' => [2, 12],
@@ -90,7 +90,7 @@ return [
 		/**
 		Race 6
 		*/
-		'WIN' => [12, 2],
+		'WIN' => [1, 7],
 		'PLACE' => [2, 12],
 		'QUINELLA PLACE' => [2, 12],
 		'QUINELLA' => [2, 12],
@@ -107,7 +107,7 @@ return [
 		/**
 		Race 7
 		*/
-		'WIN' => [12, 2],
+		'WIN' => [1, 7],
 		'PLACE' => [2, 12],
 		'QUINELLA PLACE' => [2, 12],
 		'QUINELLA' => [2, 12],
@@ -124,7 +124,7 @@ return [
 		/**
 		Race 8
 		*/
-		'WIN' => [12, 2],
+		'WIN' => [1, 7],
 		'PLACE' => [2, 12],
 		'QUINELLA PLACE' => [2, 12],
 		'QUINELLA' => [2, 12],
@@ -141,7 +141,7 @@ return [
 		/**
 		Race 9
 		*/
-		'WIN' => [12, 2],
+		'WIN' => [1, 7],
 		'PLACE' => [2, 12],
 		'QUINELLA PLACE' => [2, 12],
 		'QUINELLA' => [2, 12],
