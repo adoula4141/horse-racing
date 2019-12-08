@@ -37,16 +37,21 @@ for ($raceNumber = 1; $raceNumber <= $totalRaces; $raceNumber++) {
 
 	$jockeyNames = [];
 	$horseNumber = 1;
-
+	$withdrawns = [];
 	for ($i=1; $i < count($first_step); $i++) { 
+        if(strpos($first_step[$i], 'color_red') !== false) { 
+        	$withdrawns[] = $horseNumber; 
+       	}
 		if (strpos($first_step[$i], 'jockeycode')) {
 			$jockeyName = strip_tags($first_step[$i]);
 			$jockeyName = jockeyName($jockeyName);
 			$jockeyName = trim(preg_replace('/[\t|\n|\s{2,}]/', '', $jockeyName));
-			echo $jockeyName . "\n"; //echo for debugging purposes
 			if(!empty($jockeyName)) {
+				echo $jockeyName . "\n"; //echo for debugging purposes
 				$jockeyNames[] = $jockeyName;
-				$racecardPart .= "\t\t$horseNumber => \"$jockeyName\",\n";
+				if(empty($withdrawns) || ! in_array($horseNumber, $withdrawns)){
+					$racecardPart .= "\t\t$horseNumber => \"$jockeyName\",\n";
+				}
 				$horseNumber ++;
 			}
 		}
