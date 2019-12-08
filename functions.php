@@ -1,5 +1,23 @@
 <?php
 
+function getRaceDates()
+{
+    $raceDates = [];
+    $resultsDir = __DIR__ . "/data" . DIRECTORY_SEPARATOR . "results";
+    if ($handle = opendir($resultsDir)) {
+        while (false !== ($entry = readdir($handle))) {
+            if ($entry != "." && $entry != "..") {
+                if($entry !== "template.html"){
+                    $raceDates[] = substr($entry, 0, -5);
+                }
+            }
+        }
+        closedir($handle);
+    }
+    asort($raceDates);
+    return $raceDates;
+}
+
 function getSelection($raceDate, $totalRaces, $character = 'c')
 {
     $selection = [];
@@ -46,7 +64,7 @@ function getWeights($raceDate, $raceNumber, $search, $character)
 
 function getJockeyNames($raceDate, $raceNumber)
 {
-    $inputFile = __DIR__ . "/data/racecard/$raceDate.php";
+    $inputFile = __DIR__ . "/data" . DIRECTORY_SEPARATOR . "" . DIRECTORY_SEPARATOR . "$raceDate.php";
     if(!file_exists($inputFile)) return [];
     $jockeyNamesAllRaces = include($inputFile);
     return $jockeyNamesAllRaces[$raceNumber];
@@ -54,7 +72,7 @@ function getJockeyNames($raceDate, $raceNumber)
 
 function raceExists($raceDate, $raceNumber)
 {
-    $inputFile = __DIR__ . "/data/racecard/$raceDate.php";
+    $inputFile = __DIR__ . "/data" . DIRECTORY_SEPARATOR . "" . DIRECTORY_SEPARATOR . "$raceDate.php";
     if(!file_exists($inputFile)) return false;
     $jockeyNamesAllRaces = include($inputFile);
     return (isset($jockeyNamesAllRaces[$raceNumber]) && !empty($jockeyNamesAllRaces[$raceNumber]));
@@ -87,7 +105,7 @@ function getWinBalance($raceDate, $raceNumber, $selected, $unitBets = 10)
 {
     if(empty($selected)) return 0;
     $balance = 0;
-    $resultsFile = __DIR__ . "/data/results/$raceDate.html";
+    $resultsFile = __DIR__ . "/data" . DIRECTORY_SEPARATOR . "results/$raceDate.html";
     if(!file_exists($resultsFile)) return $balance;
     $content = file_get_contents($resultsFile);
     //retrieve results for race $raceNumber
@@ -114,7 +132,35 @@ function getWinBalance($raceDate, $raceNumber, $selected, $unitBets = 10)
 function plaBalance($raceDate, $method)
 {
     //1.get the bets
-    $betsFile = "data/bets/$raceDate" . "Set$method.php";
+    $betsFile = "data" . DIRECTORY_SEPARATOR . "bets" . DIRECTORY_SEPARATOR . $raceDate . "Set$method.php";
+    $allBets = include($betsFile);
+    $totalWon = 0;
+
+    for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) { 
+        //retrieve bets placed for race $raceNumber
+        if (!isset($allBets[$raceNumber])) {
+            continue;
+        }
+        $bets = $allBets[$raceNumber];
+        if(!isset($bets['PLACE'])) continue;
+        $selected = $bets['PLACE'];
+        $totalWon += getPlaBalance($raceDate, $raceNumber, $selected, $bets['unitPlaBet']);
+    }
+    return $totalWon;
+}
+
+function pplaBalance($raceDate, $method)
+{
+    //1.get the bets
+    $raceDates = getRaceDates();
+    $index = array_search($raceDate, $raceDates);
+
+    if(isset($raceDates[$index - 1])) {
+        $tmpRaceDate = $raceDates[$index - 1];
+        $betsFile = __DIR__ . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR . "bets" . DIRECTORY_SEPARATOR . "$tmpRaceDate" . "Set$method.php";
+    }
+    else return 0;
+
     $allBets = include($betsFile);
     $totalWon = 0;
 
@@ -134,7 +180,7 @@ function plaBalance($raceDate, $method)
 function winBalance($raceDate, $method)
 {
     //1.get the bets
-    $betsFile = "data/bets/$raceDate" . "Set$method.php";
+    $betsFile = "data" . DIRECTORY_SEPARATOR . "bets" . DIRECTORY_SEPARATOR . $raceDate . "Set$method.php";
     $allBets = include($betsFile);
     $totalWon = 0;
 
@@ -151,10 +197,69 @@ function winBalance($raceDate, $method)
     return $totalWon;
 }
 
+function pwinBalance($raceDate, $method)
+{
+    //1.get the bets
+    $raceDates = getRaceDates();
+    $index = array_search($raceDate, $raceDates);
+
+    if(isset($raceDates[$index - 1])) {
+        $tmpRaceDate = $raceDates[$index - 1];
+        $betsFile = __DIR__ . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR . "bets" . DIRECTORY_SEPARATOR . "$tmpRaceDate" . "Set$method.php";
+    }
+    else return 0;
+
+    $allBets = include($betsFile);
+    $totalWon = 0;
+
+    for ($raceNumber=1; $raceNumber <= 7; $raceNumber++) { 
+        //retrieve bets placed for race $raceNumber
+        if (!isset($allBets[$raceNumber])) {
+            continue;
+        }
+        $bets = $allBets[$raceNumber];
+        if(!isset($bets['WIN'])) continue;
+        $selected = $bets['WIN'];
+        $totalWon += getWinBalance($raceDate, $raceNumber, $selected, $bets['unitWinBet']);
+    }
+    return $totalWon;
+}
+
+
 function qplBalance($raceDate, $method)
 {
     //1.get the bets
-    $betsFile = "data/bets/$raceDate" . "Set$method.php";
+    $betsFile = "data" . DIRECTORY_SEPARATOR . "bets" . DIRECTORY_SEPARATOR . $raceDate . "Set$method.php";
+    $allBets = include($betsFile);
+    $totalWon = 0;
+
+    for ($raceNumber=1; $raceNumber <= 7; $raceNumber++) { 
+        //retrieve bets placed for race $raceNumber
+        if (!isset($allBets[$raceNumber])) {
+            continue;
+        }
+        $bets = $allBets[$raceNumber];
+        if(!isset($bets['QUINELLA PLACE'])) continue;
+        $selected = $bets['QUINELLA PLACE'];
+        if(isset($bets['unitQplBet'])) $unitQplBet = $bets['unitQplBet'];
+        else $unitQplBet = 10;
+        $totalWon += getQplBalance($raceDate, $raceNumber, $selected, $unitQplBet);
+    }
+    return $totalWon;
+}
+
+function pqplBalance($raceDate, $method)
+{
+    //1.get the bets
+    $raceDates = getRaceDates();
+    $index = array_search($raceDate, $raceDates);
+
+    if(isset($raceDates[$index - 1])) {
+        $tmpRaceDate = $raceDates[$index - 1];
+        $betsFile = __DIR__ . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR . "bets" . DIRECTORY_SEPARATOR . "$tmpRaceDate" . "Set$method.php";
+    }
+    else return 0;
+
     $allBets = include($betsFile);
     $totalWon = 0;
 
@@ -176,7 +281,7 @@ function qplBalance($raceDate, $method)
 function qinBalance($raceDate, $method)
 {
     //1.get the bets
-    $betsFile = "data/bets/$raceDate" . "Set$method.php";
+    $betsFile = "data" . DIRECTORY_SEPARATOR . "bets" . DIRECTORY_SEPARATOR . $raceDate . "Set$method.php";
     $allBets = include($betsFile);
     $totalWon = 0;
 
@@ -195,11 +300,40 @@ function qinBalance($raceDate, $method)
     return $totalWon;
 }
 
+function pqinBalance($raceDate, $method)
+{
+    //1.get the bets
+    $raceDates = getRaceDates();
+    $index = array_search($raceDate, $raceDates);
+
+    if(isset($raceDates[$index - 1])) {
+        $tmpRaceDate = $raceDates[$index - 1];
+        $betsFile = __DIR__ . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR . "bets" . DIRECTORY_SEPARATOR . "$tmpRaceDate" . "Set$method.php";
+    }
+    else return 0;
+    
+    $allBets = include($betsFile);
+    $totalWon = 0;
+
+    for ($raceNumber=1; $raceNumber <= 7; $raceNumber++) { 
+        //retrieve bets placed for race $raceNumber
+        if (!isset($allBets[$raceNumber])) {
+            continue;
+        }
+        $bets = $allBets[$raceNumber];
+        if(!isset($bets['QUINELLA'])) continue;
+        $selected = $bets['QUINELLA'];
+        if(isset($bets['unitQinBet'])) $unitQinBet = $bets['unitQinBet'];
+        else $unitQinBet = 10;
+        $totalWon += getQinBalance($raceDate, $raceNumber, $selected, $unitQinBet);
+    }
+    return $totalWon;
+}
 
 function tceBalance($raceDate, $method)
 {
     //1.get the bets
-    $betsFile = "data/bets/$raceDate" . "Set$method.php";
+    $betsFile = "data" . DIRECTORY_SEPARATOR . "bets" . DIRECTORY_SEPARATOR . $raceDate . "Set$method.php";
     $allBets = include($betsFile);
     $totalWon = 0;
 
@@ -221,7 +355,7 @@ function getPlaBalance($raceDate, $raceNumber, $selected, $unitBets = 10)
 {
     if(empty($selected)) return 0;
     $balance = 0;
-    $resultsFile = __DIR__ . "/data/results/$raceDate.html";
+    $resultsFile = __DIR__ . "/data" . DIRECTORY_SEPARATOR . "results/$raceDate.html";
     if(!file_exists($resultsFile)) return $balance;
     $content = file_get_contents($resultsFile);
     //retrieve results for race $raceNumber
@@ -262,7 +396,7 @@ function getQplBalance($raceDate, $raceNumber, $selected, $unitBets = 10)
 {
     if(empty($selected)) return 0;
     $balance = 0;
-    $resultsFile = __DIR__ . "/data/results/$raceDate.html";
+    $resultsFile = __DIR__ . "/data" . DIRECTORY_SEPARATOR . "results/$raceDate.html";
     if(!file_exists($resultsFile)) return $balance;
     $content = file_get_contents($resultsFile);
     //retrieve results for race $raceNumber
@@ -309,7 +443,7 @@ function getQinBalance($raceDate, $raceNumber, $selected, $unitBets = 10)
 {
     if(empty($selected)) return 0;
     $balance = 0;
-    $resultsFile = __DIR__ . "/data/results/$raceDate.html";
+    $resultsFile = __DIR__ . "/data" . DIRECTORY_SEPARATOR . "results/$raceDate.html";
     if(!file_exists($resultsFile)) return $balance;
     $content = file_get_contents($resultsFile);
     //retrieve results for race $raceNumber
@@ -339,7 +473,7 @@ function getTrioBalance($raceDate, $raceNumber, $selected, $unitBets = 10)
 {
     if(empty($selected)) return 0;
     $balance = 0;
-    $resultsFile = __DIR__ . "/data/results/$raceDate.html";
+    $resultsFile = __DIR__ . "/data" . DIRECTORY_SEPARATOR . "results/$raceDate.html";
     if(!file_exists($resultsFile)) return $balance;
     $content = file_get_contents($resultsFile);
     //retrieve results for race $raceNumber
@@ -368,7 +502,37 @@ function getTrioBalance($raceDate, $raceNumber, $selected, $unitBets = 10)
 function trioBalance($raceDate, $method, $trioNumber)
 {
     //1.get the bets
-    $betsFile = "data/bets/$raceDate" . "Set$method.php";
+    $betsFile = "data" . DIRECTORY_SEPARATOR . "bets" . DIRECTORY_SEPARATOR . $raceDate . "Set$method.php";
+    $allBets = include($betsFile);
+    $totalWon = 0;
+
+    for ($raceNumber=1; $raceNumber <= 8; $raceNumber++) { 
+        //retrieve bets placed for race $raceNumber
+        if (!isset($allBets[$raceNumber])) {
+            continue;
+        }
+        $bets = $allBets[$raceNumber];
+        if(!isset($bets["TRIO $trioNumber"])) continue;
+        $selected = $bets["TRIO $trioNumber"];
+        if(empty($selected)) continue;
+        if(isset($bets['unitTrioBet'])) $unitTrioBet = $bets['unitTrioBet'];
+        else $unitTrioBet = 10;
+        $totalWon += getTrioBalance($raceDate, $raceNumber, $selected, $unitTrioBet);
+    }
+    return $totalWon;
+}
+
+function ptrioBalance($raceDate, $method, $trioNumber)
+{
+    //1.get the bets
+    $raceDates = getRaceDates();
+    $index = array_search($raceDate, $raceDates);
+
+    if(isset($raceDates[$index - 1])) {
+        $tmpRaceDate = $raceDates[$index - 1];
+        $betsFile = __DIR__ . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR . "bets" . DIRECTORY_SEPARATOR . "$tmpRaceDate" . "Set$method.php";
+    }
+    else return 0;
     $allBets = include($betsFile);
     $totalWon = 0;
 
@@ -392,7 +556,7 @@ function getTceBalance($raceDate, $raceNumber, $selected, $unitBets = 10)
 {
     if(empty($selected)) return 0;
     $balance = 0;
-    $resultsFile = __DIR__ . "/data/results/$raceDate.html";
+    $resultsFile = __DIR__ . "/data" . DIRECTORY_SEPARATOR . "results/$raceDate.html";
     if(!file_exists($resultsFile)) return $balance;
     $content = file_get_contents($resultsFile);
     //retrieve results for race $raceNumber
@@ -431,7 +595,7 @@ function getTceBalance($raceDate, $raceNumber, $selected, $unitBets = 10)
 function getQuartetResult($raceDate, $raceNumber)
 {
     $winningQuartet = [];
-    $resultsFile = __DIR__ . "/data/results/$raceDate.html";
+    $resultsFile = __DIR__ . "/data" . DIRECTORY_SEPARATOR . "results/$raceDate.html";
     if(!file_exists($resultsFile)) $winningQuartet = [];
     $content = file_get_contents($resultsFile);
     //retrieve results for race $raceNumber
