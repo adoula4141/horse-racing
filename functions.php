@@ -18,6 +18,22 @@ function getRaceDates()
     return $raceDates;
 }
 
+function getOpenRaceDates()
+{
+    $raceDates = [];
+    $resultsDir = __DIR__ . "/data" . DIRECTORY_SEPARATOR . "bets";
+    if ($handle = opendir($resultsDir)) {
+        while (false !== ($entry = readdir($handle))) {
+            if ($entry != "." && $entry != "..") {
+                $raceDates[] = substr($entry, 0, 8);
+            }
+        }
+        closedir($handle);
+    }
+    asort($raceDates);
+    return $raceDates;
+}
+
 function getSelection($raceDate, $totalRaces, $character = 'c')
 {
     $selection = [];

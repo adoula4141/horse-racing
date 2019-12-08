@@ -9,6 +9,10 @@ $jockeyNamesAllRaces = include($inputFile);
 
 $totalRaces = count($jockeyNamesAllRaces);
 
+/**
+    @todo: TO LIMIT PLAY METHOD TO QPL S1 AND WIN BASED ON IN INTERSECTION OF TRIO1 OF PREVIOUS SIMILR DAYS AS CALCULATED IN SIMILITUDES.PHP
+*/
+
 $outputFile = "data/bets/$raceDate"."SetS1.php";
 
 function getdata($raceDate, $totalRaces, $outputFile)
@@ -44,6 +48,18 @@ function getdata($raceDate, $totalRaces, $outputFile)
 
     $toWin = array_slice($selection, 0, 2);
     $toPlace = $selection;
+    sort($toPlace);
+
+    //add to trios.php
+    $triosArrayFile = __DIR__ . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR . "trios.php";
+    $triosArray = include($triosArrayFile);
+    if(count($toPlace) >= 3 && !in_array($toPlace, $triosArray)) $triosArray[] = $toPlace;
+    $writeToTrios = "<?php\n\nreturn [\n";
+    foreach ($triosArray as $trioValueArray) {
+        $writeToTrios .= "\t[" . implode(", ", $trioValueArray) . "],\n";
+    }
+    $writeToTrios .= "];\n";
+    file_put_contents($triosArrayFile, $writeToTrios);
 
     $unitWinBet = 100;
     $unitPlaBet = 100;
@@ -54,8 +70,10 @@ function getdata($raceDate, $totalRaces, $outputFile)
     else $toTrio1 = [];
 
     $toTrio2 = $toTrio;
+    asort($toTrio2);
 
     $toTce = array_values(array_unique(array_merge($toTrio1, $toTrio2)));
+    asort($toTce);
     $first4 = $toTce;
 
     for ($raceNumber = 1; $raceNumber <= $totalRaces; $raceNumber++) { 
@@ -68,8 +86,8 @@ function getdata($raceDate, $totalRaces, $outputFile)
 
         $betting .= "\t\t'WIN' => [" . implode(", ", $toWin) . "],\n";
         $betting .= "\t\t'PLACE' => [" . implode(", ", $toPlace) . "],\n";
-        $betting .= "\t\t'QUINELLA PLACE' => [" . implode(", ", $selection) . "],\n";
-        $betting .= "\t\t'QUINELLA' => [" . implode(", ", $selection) . "],\n";
+        $betting .= "\t\t'QUINELLA PLACE' => [" . implode(", ", $toPlace) . "],\n";
+        $betting .= "\t\t'QUINELLA' => [" . implode(", ", $toPlace) . "],\n";
         $betting .= "\t\t'TRIO 1' => [" . implode(", ", $toTrio1) ."],\n";
         $betting .= "\t\t'TRIO 2' => [" . implode(", ", $toTrio2) ."],\n";
         $betting .= "\t\t'TIERCE' => [" . implode(", ", $toTce) ."],\n";
