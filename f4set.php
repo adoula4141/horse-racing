@@ -1,7 +1,13 @@
 <?php
 
 $setNumber = trim($argv[1]);
-$raceDate = trim($argv[2]);
+if(isset($argv[2])) {
+	$raceDate = trim($argv[2]);
+} 
+else{ 
+	$raceDate = $setNumber;
+	$setNumber = "S1";
+}
 
 $fileName = "data/results/$raceDate.html";
 $content = file_get_contents($fileName);

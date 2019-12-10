@@ -14,12 +14,33 @@ function win($raceDate)
         if(empty($intersection)) $intersection = $tceBets;
         else $intersection = array_values(array_unique(array_merge(
                 array_intersect($intersection, $tceBets),
-                array_intersect($intersection, $tceBets)
+                array_intersect($tceBets, $intersection)
         )));
         $previousIntersection = $intersection;
     }
     if(empty($intersection)) return $previousIntersection;
     else return $intersection;
+}
+
+function fillWinArray($raceDate, $toTce){
+    $raceDates = groupRaceDates($raceDate);
+    arsort($raceDates);
+    $raceDates = array_values($raceDates);
+    $toWin = [];
+    $k = 0;
+    while (empty($toWin) && isset($raceDates[$k])) {
+        $value = $raceDates[$k];
+        $betsFile = "data" . DIRECTORY_SEPARATOR . "bets" . DIRECTORY_SEPARATOR . $value . "SetS1.php";
+        if(!file_exists($betsFile)) continue;
+        $allBets = include($betsFile);
+        $tceBets = $allBets[1]['TIERCE']; 
+        $toWin = array_values(array_unique(array_merge(
+                array_intersect($toTce, $tceBets),
+                array_intersect($tceBets, $toTce)
+        )));
+        $k ++;
+    }
+    return $toWin;
 }
 
 function groupRaceDates($raceDate)
@@ -227,7 +248,7 @@ function winBalance($raceDate, $method)
     $allBets = include($betsFile);
     $totalWon = 0;
 
-    for ($raceNumber=1; $raceNumber <= 7; $raceNumber++) { 
+    for ($raceNumber=1; $raceNumber <= 5; $raceNumber++) { 
         //retrieve bets placed for race $raceNumber
         if (!isset($allBets[$raceNumber])) {
             continue;

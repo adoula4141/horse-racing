@@ -78,6 +78,8 @@ function getdata($raceDate, $totalRaces, $outputFile)
     asort($toTce);
     $first4 = $toTce;
 
+    if(empty($toWin)) $toWin = fillWinArray($raceDate, $toTce);
+
     for ($raceNumber = 1; $raceNumber <= $totalRaces; $raceNumber++) { 
         if(!raceExists($raceDate, $raceNumber)) continue;
 

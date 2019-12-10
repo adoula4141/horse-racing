@@ -3,7 +3,13 @@
 include __DIR__. '/functions.php';
 
 $setNumber = trim($argv[1]);
-$raceDate = trim($argv[2]);
+if(isset($argv[2])) {
+	$raceDate = trim($argv[2]);
+} 
+else{ 
+	$raceDate = $setNumber;
+	$setNumber = "S1";
+}
 
 $raceDates = getRaceDates();
 $index = array_search($raceDate, $raceDates);

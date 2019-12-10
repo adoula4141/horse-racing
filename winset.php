@@ -1,7 +1,13 @@
 <?php
 
 $setNumber = trim($argv[1]);
-$raceDate = trim($argv[2]);
+if(isset($argv[2])) {
+	$raceDate = trim($argv[2]);
+} 
+else{ 
+	$raceDate = $setNumber;
+	$setNumber = "S1";
+}
 
 $fileName = "data/results/$raceDate.html";
 $content = file_get_contents($fileName);
@@ -11,7 +17,7 @@ $balance = 0;
 $betsFile = "data/bets/$raceDate"."Set$setNumber.php";
 $allBets = include($betsFile);
 
-for ($raceNumber=1; $raceNumber <= 5; $raceNumber++) { 
+for ($raceNumber=1; $raceNumber <= 2; $raceNumber++) { 
 	if($balance < 0) 
 	{
 		echo "Negative balance: $balance \n";
