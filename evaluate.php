@@ -19,7 +19,7 @@ A VALUE OF THE MATRIX IS THE FINAL BALANCE USING THAT BETTING METHOD FOR THAT DA
 $raceDates = getRaceDates();
 //2. Get the balance for each racing date, betting style and set.
 // $styles = [ 'trio1' ];
-$styles = [ 'win', 'pla', 'qpl', 'qin' ];
+$styles = [ 'win', 'pla', 'qpl', 'qin', 'trio1', 'trio2', 'trio3' ];
 $methods = [ 'S1' ];
 
 $totalCount = count($styles) * count($methods);
@@ -75,6 +75,12 @@ for ($key=0; $key < count($raceDates); $key++) {
 
 				case 'trio2':
 					$amount = trioBalance($raceDate, $method, 2);
+					$header[] = $amount;
+					$lineSum += $amount;
+					break;
+
+				case 'trio3':
+					$amount = trioBalance($raceDate, $method, 3);
 					$header[] = $amount;
 					$lineSum += $amount;
 					break;
