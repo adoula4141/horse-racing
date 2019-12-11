@@ -6,7 +6,7 @@ include __DIR__ . "/functions.php";
 $raceDates = getRaceDates();
 
 //2. Get the balance for each racing date, betting style and set.
-$methods = [ 'win_S1', 'pla_S1', 'qpl_S1', 'trio1_S1', 'trio3_S1' ];
+$methods = [ 'pla_S1', 'qpl_S1' ];
 
 $balancesMatrix = [];
 $header = ["race_date"];
@@ -29,18 +29,6 @@ for ($key=0; $key < count($raceDates); $key++) {
 		switch ($style) {
 			case 'pla':
 				$amount = plaBalance($raceDate, $set);
-				$header[] = $amount;
-				$lineSum += $amount;
-				break;
-
-			case 'win':
-				$amount = winBalance($raceDate, $set);
-				$header[] = $amount;
-				$lineSum += $amount;
-				break;
-
-			case 'qin':
-				$amount = qinBalance($raceDate, $set);
 				$header[] = $amount;
 				$lineSum += $amount;
 				break;

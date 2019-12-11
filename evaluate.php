@@ -5,11 +5,9 @@ include __DIR__ . "/functions.php";
 /**
 THIS IS THE MAIN PROGRAM OF THE APPLICATION.
 IT GENERATES A MATRIX OF 5 * 7 = 35 COLUMNS EACH REPRESENTING ONE OF THE 5 BETTING STYLES:
-	1. WIN
-	2. PLACE
-	3. QIN
-	4. QPL
-	5. TRIO
+	1. PLACE
+	2. QPL
+	3. TRIO
 AND EACH OF THE 2 BET SETS (setA.php and setD.php.)
 THE LINES REPRESENTS THE RACE DATES.
 A VALUE OF THE MATRIX IS THE FINAL BALANCE USING THAT BETTING METHOD FOR THAT DAY.
@@ -19,7 +17,7 @@ A VALUE OF THE MATRIX IS THE FINAL BALANCE USING THAT BETTING METHOD FOR THAT DA
 $raceDates = getRaceDates();
 //2. Get the balance for each racing date, betting style and set.
 // $styles = [ 'trio1' ];
-$styles = [ 'win', 'pla', 'qpl', 'qin', 'trio1', 'trio2', 'trio3' ];
+$styles = [ 'pla', 'qpl', 'trio1', 'trio2', 'trio3' ];
 $methods = [ 'S1' ];
 
 $totalCount = count($styles) * count($methods);
@@ -45,18 +43,6 @@ for ($key=0; $key < count($raceDates); $key++) {
 			switch ($style) {
 				case 'pla':
 					$amount = plaBalance($raceDate, $method);
-					$header[] = $amount;
-					$lineSum += $amount;
-					break;
-
-				case 'win':
-					$amount = winBalance($raceDate, $method);
-					$header[] = $amount;
-					$lineSum += $amount;
-					break;
-
-				case 'qin':
-					$amount = qinBalance($raceDate, $method);
 					$header[] = $amount;
 					$lineSum += $amount;
 					break;

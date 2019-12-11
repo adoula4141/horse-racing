@@ -27,7 +27,7 @@ $balance = 0;
 
 $allBets = include($betsFile);
 
-for ($raceNumber=1; $raceNumber <= 7; $raceNumber++) { 
+for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) { 
 	if ($balance < 0) {
 		echo "Negative balance: $balance \n";
 	}
