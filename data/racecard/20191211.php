@@ -145,7 +145,6 @@ return [
 		Race 9
 		*/
 		1 => "ZPurton",
-		2 => "HTMo",
 		3 => "JMoreira",
 		4 => "MChadwick",
 		5 => "BShinn",
