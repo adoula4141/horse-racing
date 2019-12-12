@@ -39,20 +39,8 @@ for ($key=0; $key < count($raceDates); $key++) {
 				$lineSum += $amount;
 				break;
 
-			case 'trio1':
-				$amount = trioBalance($raceDate, $set, 1);
-				$header[] = $amount;
-				$lineSum += $amount;
-				break;
-
-			case 'trio2':
-				$amount = trioBalance($raceDate, $set, 2);
-				$header[] = $amount;
-				$lineSum += $amount;
-				break;
-
-			case 'trio3':
-				$amount = trioBalance($raceDate, $set, 3);
+			case 'trio':
+				$amount = trioBalance($raceDate, $set);
 				$header[] = $amount;
 				$lineSum += $amount;
 				break;

@@ -71,6 +71,7 @@ function getdata($raceDate, $totalRaces, $outputFile)
     $toTce = array_values(array_unique(array_merge($toTrio1, $toTrio2)));
     asort($toTce);
     $first4 = $toTce;
+    $toTrio = array_slice($toTce, 0, 5);
 
     $toTrio3 = array_filter(array_values(array_unique(array_merge($toWin, $toPlace))));
 
@@ -84,9 +85,7 @@ function getdata($raceDate, $totalRaces, $outputFile)
 
         $betting .= "\t\t'PLACE' => [" . implode(", ", $toPlace) . "],\n";
         $betting .= "\t\t'QUINELLA PLACE' => [" . implode(", ", $toPlace) . "],\n";
-        $betting .= "\t\t'TRIO 1' => [" . implode(", ", $toTrio1) ."],\n";
-        $betting .= "\t\t'TRIO 2' => [" . implode(", ", $toTrio2) ."],\n";
-        $betting .= "\t\t'TRIO 3' => [" . implode(", ", $toTrio3) ."],\n";
+        $betting .= "\t\t'TRIO' => [" . implode(", ", $toTrio) ."],\n";
         $betting .= "\t\t'TIERCE' => [" . implode(", ", $toTce) ."],\n";
         $betting .= "\t\t'FIRST 4' => [" . implode(", ", $first4) ."],\n";
         

@@ -29,8 +29,8 @@ for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) {
 	}
 	$bets = $allBets[$raceNumber];
 
-	if(!isset($bets['TRIO 3'])) continue;
-	$toTrio = $bets['TRIO 3'];
+	if(!isset($bets['TRIO'])) continue;
+	$toTrio = $bets['TRIO'];
 	
 	if(isset($bets['unitTrioBet'])) $unitTrioBet = $bets['unitTrioBet'];
 	else $unitTrioBet = 10;
