@@ -1,5 +1,7 @@
 <?php
 
+include __DIR__ . '/functions.php';
+
 $setNumber = trim($argv[1]);
 if(isset($argv[2])) {
 	$raceDate = trim($argv[2]);
@@ -28,7 +30,8 @@ for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) {
 	$bets = $allBets[$raceNumber];
 	if(!isset($bets['FIRST 4'])) continue;
 	$toF4 = $bets['FIRST 4'];
-	$f4Bets = $bets['f4Bets'];
+	$unitBet = 10;
+    $f4Bets = $unitBet * combinations(count($toF4), 4);
 
 	//retrieve results for race $raceNumber
 	$raceStarts = strpos($content, "<R$raceNumber>");

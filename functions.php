@@ -377,6 +377,59 @@ function trioBalance($raceDate, $method)
     return $totalWon;
 }
 
+function f4Balance($raceDate, $method)
+{
+    //1.get the bets
+    $betsFile = "data" . DIRECTORY_SEPARATOR . "bets" . DIRECTORY_SEPARATOR . $raceDate . "Set$method.php";
+    $allBets = include($betsFile);
+    $totalWon = 0;
+
+    for ($raceNumber=1; $raceNumber <= 11; $raceNumber++) { 
+        //retrieve bets placed for race $raceNumber
+        if (!isset($allBets[$raceNumber])) {
+            continue;
+        }
+        $bets = $allBets[$raceNumber];
+        if(!isset($bets["FIRST 4"])) continue;
+        $selected = $bets["FIRST 4"];
+        if(empty($selected)) continue;
+        $unitBet = 10;
+        $totalWon += getF4Balance($raceDate, $raceNumber, $selected, $unitBet);
+    }
+    return $totalWon;
+}
+
+function getF4Balance($raceDate, $raceNumber, $selected, $unitBets = 10)
+{
+    if(empty($selected)) return 0;
+    $balance = 0;
+    $resultsFile = __DIR__ . "/data" . DIRECTORY_SEPARATOR . "results/$raceDate.html";
+    if(!file_exists($resultsFile)) return $balance;
+    $content = file_get_contents($resultsFile);
+    //retrieve results for race $raceNumber
+    $raceStarts = strpos($content, "<R$raceNumber>");
+    $raceEnds = strpos($content, "</R$raceNumber>");
+    $raceDividends = substr($content, $raceStarts + 5, $raceEnds - $raceStarts - 4);
+    $raceDivParts = array_values(array_filter(array_map('trim', explode("\n", $raceDividends))));
+    foreach ($raceDivParts as $key=>$raceDivPartsLine) {
+        if(strpos($raceDivPartsLine, "FIRST 4") !== false){
+            $f4Bets = $unitBets * combinations(count($selected), 4);
+            $balance -= $f4Bets;
+            $lineParts1 = explode("\t", $raceDivParts[$key]);
+            $winningF4 = explode(",", $lineParts1[1]);
+            $winningAmount = str_replace(",", "", $lineParts1[2]);
+            $isWinner = array_intersect($winningF4, $selected);
+            $f4Diff = array_diff($winningF4, $isWinner); 
+            if(empty($f4Diff)) 
+            {
+                $balance += $unitBets / 10 * $winningAmount;
+            }
+        }
+    }
+    return $balance;
+}
+
+
 function getTceBalance($raceDate, $raceNumber, $selected, $unitBets = 10)
 {
     if(empty($selected)) return 0;

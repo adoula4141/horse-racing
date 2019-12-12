@@ -17,7 +17,7 @@ A VALUE OF THE MATRIX IS THE FINAL BALANCE USING THAT BETTING METHOD FOR THAT DA
 $raceDates = getRaceDates();
 //2. Get the balance for each racing date, betting style and set.
 // $styles = [ 'trio1' ];
-$styles = [ 'pla', 'qpl', 'trio' ];
+$styles = [ 'pla', 'qpl', 'trio', 'tce', 'f4' ];
 $methods = [ 'S1' ];
 
 $totalCount = count($styles) * count($methods);
