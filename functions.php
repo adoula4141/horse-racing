@@ -138,7 +138,8 @@ function getJockeyNames($raceDate, $raceNumber)
     $inputFile = __DIR__ . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR . "racecard" . DIRECTORY_SEPARATOR . "$raceDate.php";
     if(!file_exists($inputFile)) return [];
     $jockeyNamesAllRaces = include($inputFile);
-    return $jockeyNamesAllRaces[$raceNumber];
+    if(isset($jockeyNamesAllRaces[$raceNumber])) return $jockeyNamesAllRaces[$raceNumber];
+    else return [];
 }
 
 function raceExists($raceDate, $raceNumber)
