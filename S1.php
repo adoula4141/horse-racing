@@ -48,17 +48,6 @@ function getdata($raceDate, $totalRaces, $outputFile)
     $toPlace = $selection;
     sort($toPlace);
 
-    //add to trios.php
-    $triosArrayFile = __DIR__ . DIRECTORY_SEPARATOR . "data" . DIRECTORY_SEPARATOR . "trios.php";
-    $triosArray = include($triosArrayFile);
-    if(count($toPlace) >= 3 && !in_array($toPlace, $triosArray)) $triosArray[] = $toPlace;
-    $writeToTrios = "<?php\n\nreturn [\n";
-    foreach ($triosArray as $trioValueArray) {
-        $writeToTrios .= "\t[" . implode(", ", $trioValueArray) . "],\n";
-    }
-    $writeToTrios .= "];\n";
-    file_put_contents($triosArrayFile, $writeToTrios);
-
     $unitPlaBet = 100;
     $unitQplBet = 10;
 
