@@ -8,7 +8,6 @@ return [
 		/**
 		Race 1
 		*/
-		1 => "CWong",
 		2 => "NCallan",
 		3 => "CYHo",
 		4 => "MFPoon",
