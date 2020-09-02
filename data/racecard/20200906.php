@@ -156,39 +156,39 @@ return [
 		/**
 		Race 9
 		*/
-		1 => "AHamelin",
-		2 => "KHChan",
-		3 => "NCallan",
-		4 => "CLChau",
-		5 => "CSchofield",
-		6 => "ZPurton",
-		7 => "ABadel",
-		8 => "KTeetan",
-		9 => "VBorges",
-		10 => "JMoreira",
-		11 => "MLYeung",
-		12 => "CWong",
-                13 => "KCLeung",
-                14 => "MFPoon"
+		1 => "KTeetan",
+		2 => "MChadwick",
+		3 => "CYHo",
+		4 => "JMoreira",
+		5 => "ZPurton",
+		6 => "CSchofield",
+		7 => "AHamelin",
+		8 => "KCLeung",
+		9 => "NCallan",
+		10 => "MFPoon",
+		11 => "BShinn",
+		12 => "VBorges",
+                13 => "HNWong",
+                14 => "ABadel"
 	],
         
         10 => [
 		/**
 		Race 10
 		*/
-		1 => "AHamelin",
-		2 => "KHChan",
-		3 => "NCallan",
-		4 => "CLChau",
-		5 => "CSchofield",
+		1 => "CLChau",
+		2 => "KTeetan",
+		3 => "KCLeung",
+		4 => "CYHo",
+		5 => "ABadel",
 		6 => "ZPurton",
-		7 => "ABadel",
-		8 => "KTeetan",
+		7 => "CSchofield",
+		8 => "JMoreira",
 		9 => "VBorges",
-		10 => "JMoreira",
+		10 => "AHamelin",
 		11 => "MLYeung",
-		12 => "CWong",
-                13 => "KCLeung",
+		12 => "HTMo",
+                13 => "CWong",
                 14 => "MFPoon"
 	],
 ];
