@@ -8,58 +8,52 @@ return [
 		/**
 		Race 1
 		*/
-		1 => "AHamelin",
-		2 => "CSchofield",
-		3 => "ZPurton",
-		4 => "BShinn",
-		5 => "HTMo",
-		6 => "KTeetan",
-		7 => "JMoreira",
-		8 => "HWLai",
-		9 => "NCallan",
-		10 => "MFPoon",
-		11 => "KHChan",
-		12 => "MLYeung",
-		13 => "HNWong",
-		14 => "CWong",
+		1 => "CLChau",
+		2 => "AHamelin",
+		3 => "HWLai",
+		4 => "KTeetan",
+		5 => "NCallan",
+		6 => "CWong",
+		7 => "KCLeung",
+		8 => "ZPurton",
+		9 => "JMoreira",
+		10 => "MChadwick",
+		11 => "ABadel",
+		12 => "MFPoon",
 	],
 	2 => [
 		/**
 		Race 2
 		*/
-		1 => "NCallan",
-		2 => "JMoreira",
-		3 => "CLChau",
-		4 => "BShinn",
-		5 => "ZPurton",
-		6 => "KTeetan",
-		7 => "AHamelin",
-		8 => "KCLeung",
-		9 => "MFPoon",
-		10 => "MChadwick",
-		11 => "KHChan",
-		12 => "THSo",
-		13 => "HNWong",
-		14 => "MLYeung",
+		1 => "CSchofield",
+		2 => "MFPoon",
+		3 => "CYHo",
+		4 => "KTeetan",
+		5 => "JMoreira",
+		6 => "ZPurton",
+		7 => "ABadel",
+		8 => "MChadwick",
+		9 => "NCallan",
+		10 => "KCLeung",
+		11 => "HNWong",
+		12 => "VBorges",
 	],
 	3 => [
 		/**
 		Race 3
 		*/
 		1 => "ZPurton",
-		2 => "NCallan",
+		2 => "CSchofield",
 		3 => "KTeetan",
-		4 => "CLChau",
-		5 => "MLYeung",
-		6 => "CSchofield",
-		7 => "AHamelin",
-		8 => "CWong",
-		9 => "HWLai",
-		10 => "KHChan",
-		11 => "HNWong",
-		12 => "JMoreira",
-		13 => "MFPoon",
-		14 => "HTMo",
+		4 => "KCLeung",
+		5 => "ABadel",
+		6 => "MLYeung",
+		7 => "JMoreira",
+		8 => "MChadwick",
+		9 => "MFPoon",
+		10 => "AHamelin",
+		11 => "CWong",
+		12 => "HNWong",
 	],
 	4 => [
 		/**
@@ -73,19 +67,6 @@ return [
 		6 => "KCLeung",
 		7 => "MLYeung",
 		8 => "KTeetan",
-	],
-	5 => [
-		/**
-		Race 5
-		*/
-		1 => "CLChau",
-		2 => "KCLeung",
-		3 => "BShinn",
-		4 => "CWong",
-		5 => "AHamelin",
-		6 => "ZPurton",
-		7 => "CSchofield",
-		8 => "THSo",
 		9 => "JMoreira",
 		10 => "NCallan",
 		11 => "MFPoon",
@@ -93,9 +74,9 @@ return [
 		13 => "KTeetan",
 		14 => "MChadwick",
 	],
-	6 => [
+	5 => [
 		/**
-		Race 6
+		Race 5
 		*/
 		1 => "CLChau",
 		2 => "ZPurton",
@@ -112,9 +93,9 @@ return [
 		13 => "HNWong",
 		14 => "KTeetan",
 	],
-	7 => [
+	6 = > [
 		/**
-		Race 7
+		Race 6
 		*/
 		1 => "AHamelin",
 		2 => "ZPurton",
@@ -131,9 +112,9 @@ return [
 		13 => "MLYeung",
 		14 => "MFPoon",
 	],
-	8 => [
+	7 => [
 		/**
-		Race 8
+		Race 7
 		*/
 		1 => "CLChau",
 		2 => "JMoreira",
@@ -150,9 +131,9 @@ return [
 		13 => "HTMo",
 		14 => "THSo",
 	],
-	9 => [
+	8 => [
 		/**
-		Race 9
+		Race 8
 		*/
 		1 => "CLChau",
 		2 => "ZPurton",
@@ -165,43 +146,5 @@ return [
 		10 => "KTeetan",
 		11 => "MFPoon",
 		12 => "HTMo",
-	],
-	10 => [
-		/**
-		Race 10
-		*/
-		1 => "NCallan",
-		2 => "CSchofield",
-		3 => "HTMo",
-		4 => "KTeetan",
-		5 => "AHamelin",
-		6 => "KCLeung",
-		7 => "MChadwick",
-		8 => "MFPoon",
-		9 => "KHChan",
-		10 => "CLChau",
-		11 => "HWLai",
-		12 => "JMoreira",
-		13 => "THSo",
-		14 => "MLYeung",
-	],
-	11 => [
-		/**
-		Race 11
-		*/
-		1 => "KHChan",
-		2 => "JMoreira",
-		3 => "KTeetan",
-		4 => "CLChau",
-		5 => "NCallan",
-		6 => "BShinn",
-		7 => "AHamelin",
-		8 => "CSchofield",
-		9 => "ZPurton",
-		10 => "HNWong",
-		11 => "THSo",
-		12 => "MLYeung",
-		13 => "KCLeung",
-		14 => "HTMo",
 	],
 ];
