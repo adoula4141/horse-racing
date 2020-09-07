@@ -89,7 +89,7 @@ return [
 		11 => "ZPurton",
 		12 => "JMoreira",
 	],
-	6 = > [
+	6 => [
 		/**
 		Race 6
 		*/
