@@ -59,20 +59,18 @@ return [
 		/**
 		Race 4
 		*/
-		1 => "MFPoon",
+		1 => "AHamelin",
 		2 => "ZPurton",
-		3 => "JMoreira",
-		4 => "CLChau",
-		5 => "CSchofield",
-		6 => "KCLeung",
-		7 => "MLYeung",
-		8 => "KTeetan",
-		9 => "JMoreira",
-		10 => "NCallan",
-		11 => "MFPoon",
-		12 => "MLYeung",
-		13 => "KTeetan",
-		14 => "MChadwick",
+		3 => "ABadel",
+		4 => "NCallan",
+		5 => "KCLeung",
+		6 => "CYHo",
+		7 => "VBorges",
+		8 => "MChadwick",
+		9 => "KTeetan",
+		10 => "JMoreira",
+		11 => "CSchofield",
+		12 => "HNWong",
 	],
 	5 => [
 		/**
