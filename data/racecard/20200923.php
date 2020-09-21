@@ -50,7 +50,7 @@ return [
 		6 => "MLYeung",
 		7 => "BShinn",
 		8 => "JMoreira",
-		9 => "THSo(-)",
+		9 => "CSchofield",
 		10 => "MChadwick",
 		11 => "LHewitson",
 		12 => "HNWong(-3)",
