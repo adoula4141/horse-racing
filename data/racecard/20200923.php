@@ -1,7 +1,7 @@
 <?php
 
 /**
-	 Jockey Names
+	 Jockey Names (Manually)
 */
 return [
 	1 => [
