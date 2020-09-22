@@ -2,7 +2,7 @@
 
 /**
 	 Jockey Names (Manually)
-	 Added comment for git operations
+	 Added a fucking comment for git operations
 */
 return [
 	1 => [
