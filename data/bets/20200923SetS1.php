@@ -1,4 +1,5 @@
 <?php
+//TO ADD: if selection contains 12, then play 12 X 1-5-7-11 for odds exceeding 150
 
 return [
 	'1' => [
