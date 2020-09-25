@@ -1,4 +1,4 @@
-//? r7: b-a+1 (-1) X c
+
 pronostic  best_performer win race_number
 1-8-11  2-8     574        2
         8-13    340        2
