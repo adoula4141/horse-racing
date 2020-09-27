@@ -47,6 +47,8 @@ function getdata($raceDate, $totalRaces, $outputFile)
     // INVESTIGATE PLAYING QUINELLA BETWEEN THESE TWO SETS
     // echo implode(", ", array_slice($list, 0, 3)) . "\n";
     // echo implode(", ", array_slice($list, 4, 3)) . "\n";
+    //this set is to be considered as well
+    //echo implode(", ", array_diff($selection, $dSet)) . "\n";
     // die();
 
     $toPlace = $selection;
