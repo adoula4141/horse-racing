@@ -71,7 +71,6 @@ return [
 		5 => "MFPoon",
 		6 => "ABadel",
 		7 => "VBorges",
-		8 => "CYHo",
 	],
 	6 => [
 		/**
