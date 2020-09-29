@@ -128,7 +128,6 @@ return [
 		3 => "BShinn",
 		4 => "AHamelin",
 		5 => "CSchofield",
-		6 => "VBorges",
 		7 => "MLYeung",
 		8 => "MFPoon",
 		9 => "KCLeung",
