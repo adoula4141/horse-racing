@@ -524,3 +524,168 @@ function sortByLengthASC($a,$b){
 function sortByLengthDESC($a,$b){
     return strlen($a)-strlen($b);
 }
+
+function getStables12($raceDate, $raceNumber)
+{
+    return getStablesDiff($raceDate, $raceNumber, 1, 2);
+}
+
+function getStables23($raceDate, $raceNumber)
+{
+    return getStablesDiff($raceDate, $raceNumber, 2, 3);
+}
+
+function getStables34($raceDate, $raceNumber)
+{
+    return getStablesDiff($raceDate, $raceNumber, 3, 4);
+}
+
+function getStables45($raceDate, $raceNumber)
+{
+    return getStablesDiff($raceDate, $raceNumber, 4, 5);
+}
+
+function getStables56($raceDate, $raceNumber)
+{
+    return getStablesDiff($raceDate, $raceNumber, 5, 6);
+}
+
+function getStablesReal($raceDate, $raceNumber, $order1, $order2)
+{
+    $fuckers = [];
+    $averages1 = getAverages($raceDate, $raceNumber, $order1);
+    asort($averages1);
+    $averages2 = getAverages($raceDate, $raceNumber, $order2);
+    asort($averages2);
+    $sortedHorses1 = array_keys($averages1);
+    $sortedHorses2 = array_keys($averages2);
+    foreach ($sortedHorses1 as $key => $value) {
+        // $sortedHorses2[$key] > $value positive for qpl_S56
+        // $sortedHorses2[$key] < $value positive for win_S23
+        if(isset($sortedHorses2[$key + 1]) && $sortedHorses2[$key + 1] < $value) $fuckers[] = $value;
+    }
+    return $fuckers;
+}
+
+
+function getStablesDiff($raceDate, $raceNumber, $order1, $order2)
+{
+    $averages1 = getAverages($raceDate, $raceNumber, $order1);
+    $averages2 = getAverages($raceDate, $raceNumber, $order2);
+    $sortedHorses1 = strictSortForKeys($averages1);
+    $sortedHorses2 = strictSortForKeys($averages2);
+    $intersection = [];
+    foreach ($sortedHorses1 as $key1 => $group1) {
+        if(isset($sortedHorses2[$key1])){
+            $intersect1 = array_intersect($group1, $sortedHorses2[$key1]);
+            $intersect2 = array_intersect($sortedHorses2[$key1], $group1);
+        }
+        else {
+            $intersect1 = [];
+            $intersect2 = [];
+        }
+        if(!empty($intersect1)){
+            $intersection = array_merge($intersection, $intersect1);
+        }
+        if(!empty($intersect2)){
+            $intersection = array_merge($intersection, $intersect2);
+        }
+    }
+    return array_filter(array_values(array_unique($intersection)));
+}
+
+function getStables($raceDate, $raceNumber)
+{
+    $stables1 = getStables12($raceDate, $raceNumber);
+    $stables2 = getStables23($raceDate, $raceNumber);
+    $stables = array_merge($stables1, $stables2);
+    return array_filter(array_values(array_unique($stables)));
+}
+
+function getStables123($raceDate, $raceNumber)
+{
+    $stables1 = getStables12($raceDate, $raceNumber);
+    $stables2 = getStables23($raceDate, $raceNumber);
+    $stables = array_merge($stables1, $stables2);
+    return array_filter(array_values(array_unique($stables)));
+}
+
+function getStables234($raceDate, $raceNumber)
+{
+    $stables1 = getStables23($raceDate, $raceNumber);
+    $stables2 = getStables34($raceDate, $raceNumber);
+    $stables = array_merge($stables1, $stables2);
+    return array_filter(array_values(array_unique($stables)));
+}
+
+function getStables345($raceDate, $raceNumber)
+{
+    $stables1 = getStables34($raceDate, $raceNumber);
+    $stables2 = getStables45($raceDate, $raceNumber);
+    $stables = array_merge($stables1, $stables2);
+    return array_filter(array_values(array_unique($stables)));
+}
+
+function getStables456($raceDate, $raceNumber)
+{
+    $stables1 = getStables45($raceDate, $raceNumber);
+    $stables2 = getStables56($raceDate, $raceNumber);
+    $stables = array_merge($stables1, $stables2);
+    return array_filter(array_values(array_unique($stables)));
+}
+
+function getStablesAll($raceDate, $raceNumber)
+{
+    $stables1 = getStables12($raceDate, $raceNumber);
+    $stables2 = getStables23($raceDate, $raceNumber);
+    $stables3 = getStables34($raceDate, $raceNumber);
+    $stables4 = getStables45($raceDate, $raceNumber);
+    $stables5 = getStables56($raceDate, $raceNumber);
+    $stables = array_merge($stables1, $stables2, $stables3, $stables4, $stables5);
+    return array_filter(array_values(array_unique($stables)));
+}
+
+function getAverages($raceDate, $raceNumber, $order)
+{
+    $items = getRaceCard($raceDate, $raceNumber);
+    $averages = [];
+    foreach ($items as $node) {
+        $textContent = $node->textContent;
+        $cells = explode("\n", $textContent);
+        $cells = array_values(array_filter(array_map('trim', $cells), 'strlen'));
+        $horseNumber = $cells[0];
+        $performances = $cells[1];
+        //horse name
+        $horseName = $cells[2];
+        if(strpos($horseName, 'Withdrawn') !== false)
+        {
+            continue;
+        }
+        if($order == "all")
+        {
+            $averages[$horseNumber] = (
+                    perfAvg($performances, 6) + perfAvg($performances, 5) + perfAvg($performances, 4) 
+                +   perfAvg($performances, 3) + perfAvg($performances, 2) + perfAvg($performances, 1)
+            ) / 6;
+        }
+        else
+        {
+            $averages[$horseNumber] = perfAvg($performances, $order);
+        }
+    }
+    return $averages;
+}
+
+function getRaceCard($raceDate, $raceNumber)
+{
+    $folderName = __DIR__ . "/data/racecard/$raceDate";
+    $inputFile = "$folderName/$raceNumber.html";
+    if(!file_exists($inputFile)) return [];
+    $contents = file_get_contents($inputFile);
+    if(empty($contents)) return [];
+    $DOM = new DOMDocument;
+    $DOM->loadHTML($contents);
+    $items = $DOM->getElementsByTagName('tr');
+    return $items;
+}
+
