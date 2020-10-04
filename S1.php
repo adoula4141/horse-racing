@@ -8,7 +8,7 @@ $inputFile = __DIR__ . "/data/racecard/$raceDate.php";
 $jockeyNamesAllRaces = include($inputFile);
 $totalRaces = count($jockeyNamesAllRaces);
 
-$outputFile = "data/bets/$raceDate"."SetS1.php";
+$outputFile = "data/bets/$raceDate" . "SetS1.php";
 
 function getdata($raceDate, $totalRaces, $outputFile)
 {
@@ -24,26 +24,26 @@ function getdata($raceDate, $totalRaces, $outputFile)
     $toTrio = array_slice($list, 1, 5);
 
     $listR2 = [];
-    $horses = getWeights($raceDate, 2, 'jockeyNames', 'k');   
-    if(isset($horses[0]) && !in_array($horses[0], $listR2)) $listR2[] = $horses[0];
-    if(isset($horses[3]) && !in_array($horses[3], $listR2)) $listR2[] = $horses[3];
-    $horses = getWeights($raceDate, 2, 'jockeyNames', 'o');   
-    if(isset($horses[0]) && !in_array($horses[0], $listR2)) $listR2[] = $horses[0];
+    $horses = getWeights($raceDate, 2, 'jockeyNames', 'k');
+    if (isset($horses[0]) && !in_array($horses[0], $listR2)) $listR2[] = $horses[0];
+    if (isset($horses[3]) && !in_array($horses[3], $listR2)) $listR2[] = $horses[3];
+    $horses = getWeights($raceDate, 2, 'jockeyNames', 'o');
+    if (isset($horses[0]) && !in_array($horses[0], $listR2)) $listR2[] = $horses[0];
 
     $selection = array_values(array_unique(array_merge($headList, $listR2)));
     $dList = [];
-    $horses = getWeights($raceDate, 1, 'jockeyNames', 'k');   
-    if(isset($horses[0]) && !in_array($horses[0], $dList)) $dList[] = $horses[0];
-    if(isset($horses[3]) && !in_array($horses[3], $dList)) $dList[] = $horses[3];
-    $horses = getWeights($raceDate, 1, 'jockeyNames', 'o');   
-    if(isset($horses[0]) && !in_array($horses[0], $dList)) $dList[] = $horses[0];
-    if(isset($horses[3]) && !in_array($horses[3], $dList)) $dList[] = $horses[3];
+    $horses = getWeights($raceDate, 1, 'jockeyNames', 'k');
+    if (isset($horses[0]) && !in_array($horses[0], $dList)) $dList[] = $horses[0];
+    if (isset($horses[3]) && !in_array($horses[3], $dList)) $dList[] = $horses[3];
+    $horses = getWeights($raceDate, 1, 'jockeyNames', 'o');
+    if (isset($horses[0]) && !in_array($horses[0], $dList)) $dList[] = $horses[0];
+    if (isset($horses[3]) && !in_array($horses[3], $dList)) $dList[] = $horses[3];
 
     $iSet = array_intersect($selection, $dList);
     $dSet = array_diff($dList, $selection);
     $mSet = array_diff($selection, $iSet);
     $selection = array_values(array_unique(array_merge($mSet, $dSet)));
-    // $selection = array_slice($selection, 0, 3);
+    $selection = array_slice($selection, 0, 3);
     // INVESTIGATE PLAYING QUINELLA BETWEEN THESE TWO SETS
     // echo implode(", ", array_slice($list, 0, 3)) . "\n";
     // echo implode(", ", array_slice($list, 4, 3)) . "\n";
@@ -57,7 +57,7 @@ function getdata($raceDate, $totalRaces, $outputFile)
     $unitPlaBet = 100;
     $unitQplBet = 10;
 
-    if(count($toPlace) >= 3) $toTrio1 = $toPlace;
+    if (count($toPlace) >= 3) $toTrio1 = $toPlace;
     else $toTrio1 = [];
 
     $toTrio2 = $toTrio;
@@ -70,8 +70,8 @@ function getdata($raceDate, $totalRaces, $outputFile)
 
     $toTrio3 = array_filter(array_values(array_unique(array_merge($toWin, $toPlace))));
 
-    for ($raceNumber = 1; $raceNumber <= $totalRaces; $raceNumber++) { 
-        if(!raceExists($raceDate, $raceNumber)) continue;
+    for ($raceNumber = 1; $raceNumber <= $totalRaces; $raceNumber++) {
+        if (!raceExists($raceDate, $raceNumber)) continue;
 
         $betting .= "\t'$raceNumber' => [\n";
         $betting .= "\t\t/**\n";
@@ -80,10 +80,10 @@ function getdata($raceDate, $totalRaces, $outputFile)
 
         $betting .= "\t\t'PLACE' => [" . implode(", ", $toPlace) . "],\n";
         $betting .= "\t\t'QUINELLA PLACE' => [" . implode(", ", $toPlace) . "],\n";
-        $betting .= "\t\t'TRIO' => [" . implode(", ", $toTrio) ."],\n";
-        $betting .= "\t\t'TIERCE' => [" . implode(", ", $toTce) ."],\n";
-        $betting .= "\t\t'FIRST 4' => [" . implode(", ", $first4) ."],\n";
-        
+        $betting .= "\t\t'TRIO' => [" . implode(", ", $toTrio) . "],\n";
+        $betting .= "\t\t'TIERCE' => [" . implode(", ", $toTce) . "],\n";
+        $betting .= "\t\t'FIRST 4' => [" . implode(", ", $first4) . "],\n";
+
         $betting .= "\t\t'unitPlaBet' => $unitPlaBet,\n";
         $betting .= "\t\t'unitQplBet' => $unitQplBet,\n";
         $betting .= "\t],\n";
