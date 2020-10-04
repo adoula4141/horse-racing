@@ -5,8 +5,8 @@ return [
 		/**
 		Race 1
 		*/
-		'PLACE' => [3, 5, 8],
-		'QUINELLA PLACE' => [3, 5, 8],
+		'PLACE' => [3, 5, 6, 7, 8],
+		'QUINELLA PLACE' => [3, 5, 6, 7, 8],
 		'TRIO' => [1, 3, 5, 6, 7],
 		'TIERCE' => [1, 3, 5, 6, 7, 8, 9],
 		'FIRST 4' => [1, 3, 5, 6, 7, 8, 9],
@@ -17,8 +17,8 @@ return [
 		/**
 		Race 2
 		*/
-		'PLACE' => [3, 5, 8],
-		'QUINELLA PLACE' => [3, 5, 8],
+		'PLACE' => [3, 5, 6, 7, 8],
+		'QUINELLA PLACE' => [3, 5, 6, 7, 8],
 		'TRIO' => [1, 3, 5, 6, 7],
 		'TIERCE' => [1, 3, 5, 6, 7, 8, 9],
 		'FIRST 4' => [1, 3, 5, 6, 7, 8, 9],
@@ -29,8 +29,8 @@ return [
 		/**
 		Race 3
 		*/
-		'PLACE' => [3, 5, 8],
-		'QUINELLA PLACE' => [3, 5, 8],
+		'PLACE' => [3, 5, 6, 7, 8],
+		'QUINELLA PLACE' => [3, 5, 6, 7, 8],
 		'TRIO' => [1, 3, 5, 6, 7],
 		'TIERCE' => [1, 3, 5, 6, 7, 8, 9],
 		'FIRST 4' => [1, 3, 5, 6, 7, 8, 9],
@@ -41,8 +41,8 @@ return [
 		/**
 		Race 4
 		*/
-		'PLACE' => [3, 5, 8],
-		'QUINELLA PLACE' => [3, 5, 8],
+		'PLACE' => [3, 5, 6, 7, 8],
+		'QUINELLA PLACE' => [3, 5, 6, 7, 8],
 		'TRIO' => [1, 3, 5, 6, 7],
 		'TIERCE' => [1, 3, 5, 6, 7, 8, 9],
 		'FIRST 4' => [1, 3, 5, 6, 7, 8, 9],
@@ -53,8 +53,8 @@ return [
 		/**
 		Race 5
 		*/
-		'PLACE' => [3, 5, 8],
-		'QUINELLA PLACE' => [3, 5, 8],
+		'PLACE' => [3, 5, 6, 7, 8],
+		'QUINELLA PLACE' => [3, 5, 6, 7, 8],
 		'TRIO' => [1, 3, 5, 6, 7],
 		'TIERCE' => [1, 3, 5, 6, 7, 8, 9],
 		'FIRST 4' => [1, 3, 5, 6, 7, 8, 9],
@@ -65,8 +65,8 @@ return [
 		/**
 		Race 6
 		*/
-		'PLACE' => [3, 5, 8],
-		'QUINELLA PLACE' => [3, 5, 8],
+		'PLACE' => [3, 5, 6, 7, 8],
+		'QUINELLA PLACE' => [3, 5, 6, 7, 8],
 		'TRIO' => [1, 3, 5, 6, 7],
 		'TIERCE' => [1, 3, 5, 6, 7, 8, 9],
 		'FIRST 4' => [1, 3, 5, 6, 7, 8, 9],
@@ -77,8 +77,8 @@ return [
 		/**
 		Race 7
 		*/
-		'PLACE' => [3, 5, 8],
-		'QUINELLA PLACE' => [3, 5, 8],
+		'PLACE' => [3, 5, 6, 7, 8],
+		'QUINELLA PLACE' => [3, 5, 6, 7, 8],
 		'TRIO' => [1, 3, 5, 6, 7],
 		'TIERCE' => [1, 3, 5, 6, 7, 8, 9],
 		'FIRST 4' => [1, 3, 5, 6, 7, 8, 9],
@@ -89,8 +89,8 @@ return [
 		/**
 		Race 8
 		*/
-		'PLACE' => [3, 5, 8],
-		'QUINELLA PLACE' => [3, 5, 8],
+		'PLACE' => [3, 5, 6, 7, 8],
+		'QUINELLA PLACE' => [3, 5, 6, 7, 8],
 		'TRIO' => [1, 3, 5, 6, 7],
 		'TIERCE' => [1, 3, 5, 6, 7, 8, 9],
 		'FIRST 4' => [1, 3, 5, 6, 7, 8, 9],

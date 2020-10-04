@@ -43,7 +43,7 @@ function getdata($raceDate, $totalRaces, $outputFile)
     $dSet = array_diff($dList, $selection);
     $mSet = array_diff($selection, $iSet);
     $selection = array_values(array_unique(array_merge($mSet, $dSet)));
-    $selection = array_slice($selection, 0, 3);
+    // $selection = array_slice($selection, 0, 3);
     // INVESTIGATE PLAYING QUINELLA BETWEEN THESE TWO SETS
     // echo implode(", ", array_slice($list, 0, 3)) . "\n";
     // echo implode(", ", array_slice($list, 4, 3)) . "\n";
