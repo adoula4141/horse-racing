@@ -98,7 +98,6 @@ return [
 		5 => "ZPurton",
 		6 => "TPiccone",
 		7 => "VBorges",
-		8 => "KCLeung",
 		9 => "ABadel",
 	],
 	7 => [
