@@ -43,7 +43,6 @@ return [
 		*/
 		1 => "KTeetan",
 		2 => "JMoreira",
-		3 => "ZPurton",
 		4 => "NCallan",
 		5 => "KCLeung",
 		6 => "CSchofield",
