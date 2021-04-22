@@ -8,7 +8,7 @@ return [
 		/**
 		Race 1
 		*/
-		1 => "BShinb",
+		1 => "BShinn",
 		2 => "ZPurton",
 		3 => "RMaia",
 		4 => "KTeetan",
@@ -55,7 +55,7 @@ return [
 		7 => "KCLeung",
 		8 => "MFPoon",
 		9 => "MChadwick",
-		10 => "MChadwick",
-		11 => "KTeetan",
+		10 => "KTeetan",
+		11 => "MLYeung",
 	],
 ];
