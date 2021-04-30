@@ -34,7 +34,7 @@ return [
 		7 => "TPiccone",
 		8 => "HBentley",
 		9 => "MFPoon",
-		10 => "CSChofield",
+		10 => "CSchofield",
 		11 => "CYHo",
 		12 => "MLYeung",
 	],
