@@ -15,7 +15,7 @@ return [
 		5 => "CLChau",
 		6 => "BShinn",
 		7 => "TPiccone",
-		8 => "CSChofield",
+		8 => "CSchofield",
 		9 => "JMoreira",
 		10 => "KTeetan",
 	],
@@ -23,7 +23,7 @@ return [
 		/**
 		Race 2
 		*/
-		1 => "CSChofield",
+		1 => "CSchofield",
 		2 => "MLYeung",
 		3 => "JMoreira",
 		4 => "BShinn",
