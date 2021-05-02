@@ -25,7 +25,6 @@ return [
 		*/
 		1 => "CSchofield",
 		2 => "MLYeung",
-		3 => "JMoreira",
 		4 => "BShinn",
 		5 => "KTeetan",
 		6 => "ZPurton",
