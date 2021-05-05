@@ -48,9 +48,9 @@ return [
 		*/
 		1 => "AHamelin",
 		2 => "KCLeung",
-		3 => "CYHo",
-		4 => "ZPurton",
-		5 => "KTeetan",
+		3 => "HNWong",
+		4 => "CWong",
+		5 => "HWLai",
 		6 => "CLChau",
 		7 => "HBentley",
 		8 => "RMaia",
