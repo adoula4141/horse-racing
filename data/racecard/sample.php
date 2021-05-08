@@ -56,9 +56,9 @@ return [
 		8 => "RMaia",
 		9 => "TPiccone",
 		10 => "JMoreira",
-		11 => "MChadwick",
-		12 => "ABadel",
-		13 => "MLYeung",
-		14 => "MFPoon",
+		11 => "HBentley",
+		12 => "VBorges",
+		13 => "KHChan",
+		14 => "AHamelin",
 	],
 ];
