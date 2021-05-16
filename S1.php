@@ -70,6 +70,9 @@ function getdata($raceDate, $totalRaces, $outputFile)
 
     $toTrio3 = array_filter(array_values(array_unique(array_merge($toWin, $toPlace))));
 
+    if(count($toTrio) == 4) $toQpl = $toTrio;
+    else $toQpl = $toPlace;
+
     for ($raceNumber = 1; $raceNumber <= $totalRaces; $raceNumber++) {
         if (!raceExists($raceDate, $raceNumber)) continue;
 
@@ -79,7 +82,7 @@ function getdata($raceDate, $totalRaces, $outputFile)
         $betting .= "\t\t*/\n";
 
         $betting .= "\t\t'PLACE' => [" . implode(", ", $toPlace) . "],\n";
-        $betting .= "\t\t'QUINELLA PLACE' => [" . implode(", ", $toPlace) . "],\n";
+        $betting .= "\t\t'QUINELLA PLACE' => [" . implode(", ", $toQpl) . "],\n";
         $betting .= "\t\t'TRIO' => [" . implode(", ", $toTrio) . "],\n";
         $betting .= "\t\t'TIERCE' => [" . implode(", ", $toTce) . "],\n";
         $betting .= "\t\t'FIRST 4' => [" . implode(", ", $first4) . "],\n";

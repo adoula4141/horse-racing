@@ -6,7 +6,7 @@ return [
 		Race 1
 		*/
 		'PLACE' => [1, 7, 11],
-		'QUINELLA PLACE' => [1, 7, 11],
+		'QUINELLA PLACE' => [1, 2, 7, 11],
 		'TRIO' => [1, 2, 7, 11],
 		'TIERCE' => [1, 2, 7, 11],
 		'FIRST 4' => [1, 2, 7, 11],
@@ -18,7 +18,7 @@ return [
 		Race 2
 		*/
 		'PLACE' => [1, 7, 11],
-		'QUINELLA PLACE' => [1, 7, 11],
+		'QUINELLA PLACE' => [1, 2, 7, 11],
 		'TRIO' => [1, 2, 7, 11],
 		'TIERCE' => [1, 2, 7, 11],
 		'FIRST 4' => [1, 2, 7, 11],
@@ -30,7 +30,7 @@ return [
 		Race 3
 		*/
 		'PLACE' => [1, 7, 11],
-		'QUINELLA PLACE' => [1, 7, 11],
+		'QUINELLA PLACE' => [1, 2, 7, 11],
 		'TRIO' => [1, 2, 7, 11],
 		'TIERCE' => [1, 2, 7, 11],
 		'FIRST 4' => [1, 2, 7, 11],
