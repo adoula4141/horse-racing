@@ -1,0 +1,15 @@
+R1(ab) 1085, R8(aa) 1438 HV
+R3(xa) 1510, R4(xa) 955, R8(aa) 915, R9(ax) 2372 HV
+R1(xx) 2529, R2(xx) 2534 HV
+R2(xx) 1169,  R5(aa) 1481, R9(ab) 3987 HV
+R7(aa)  924 HV
+None HV
+
+R7(ba) 2603, R9(ax) 996, R10(ab) 1545 ST
+R9(ax) 1172 ST
+R9(xx) 11732 ST
+R1(aa) 1344, R5(aa) 1253, R9(ax) 2972 ST
+R6(aa) 1525 ST
+R1(xa) 7361, R3(xb) 1427, R6(xx) 5013, R7(xx) 986   ST
+R2(xb) 4695, R5(ax) 1196, R6(bx) 5065, R8(bx) 1613 ST
+R1(xa) 1981, R5(ax) 4804  ST
