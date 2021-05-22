@@ -1,9 +1,9 @@
 R1(ab) 1085, R8(aa) 1438 HV
 R3(xa) 1510, R4(xa) 955, R8(aa) 915, R9(ax) 2372 HV
 R1(xx) 2529, R2(xx) 2534 HV
-R2(xx) 1169,  R5(aa) 1481, R9(ab) 3987 HV
+R2(xx) 1169, R5(aa) 1481, R9(ab) 3987 HV
 R7(aa)  924 HV
-None HV
+R7(bx) 2580, R9(ax) 8585 HV
 => HV: R2(xx), R7(aa), R8(aa), R9(a . x+b)
 
 R7(ba) 2603, R9(ax) 996, R10(ab) 1545 ST
