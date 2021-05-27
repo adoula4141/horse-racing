@@ -4,7 +4,8 @@ R1(xx) 2529, R2(xx) 2534 HV
 R2(xx) 1169, R5(aa) 1481, R9(ab) 3987 HV
 R7(aa)  924 HV
 R7(bx) 2580, R9(ax) 8585 HV
-=> HV: R2(xx), R7(aa), R8(aa), R9(a . x+b)
+R1(xx) 999, R4(ax) 2269, R9(xa) 1184 HV
+=> HV: R1(xx),R2(xx),R7(aa),R8(aa),R9(a.x+b)qin
 
 R7(ba) 2603, R9(ax) 996, R10(ab) 1545 ST
 R9(ax) 1172 ST
