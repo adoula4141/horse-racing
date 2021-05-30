@@ -16,4 +16,5 @@ R1(xa) 7361, R3(xb) 1427, R6(xx) 5013, R7(xx) 986   ST
 R2(xb) 4695, R5(ax) 1196, R6(bx) 5065, R8(bx) 1613 ST
 R1(xa) 1981, R5(ax) 4804  ST
 R5(ab) 2487 ST
+R1(aa) 962, R6(xx) 4130, R8(xx) 3881 ST
 => ST: R1(xa), R5(a . x+b), R6(xx, aa, bx), R9(ax, xx)
