@@ -1,0 +1,27 @@
+------16/05/2021------
+R1: QPL
+R2: Trio
+R4: Qin
+R5: Win, QPL
+R8: Win
+R9: Win
+
+------14/04/2021------
+R3: Qin
+R5: QPL
+R6: Qin
+R7: Win
+
+------01/10/2020------
+R1: Win, QPL
+R3: Win, QPL
+R5: Win
+R7: QPL
+R8: Qin
+------01/12/2019------
+R1: Trio, F4
+R5: Place
+R7: Win
+R9: Win
+R10: QPL
+
