@@ -15,7 +15,7 @@ R7: Win
 ------01/10/2020------
 R1: Win, QPL
 R3: Win, QPL
-R5: Win
+R5: Qin
 R7: QPL
 R8: Qin
 ------01/12/2019------
