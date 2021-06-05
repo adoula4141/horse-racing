@@ -25,7 +25,7 @@ return [
 		/**
 		Race 2
 		*/
-		1 => "NCallan",
+		1 => "CLChau",
 		2 => "CSchofield",
 		3 => "KCLeung",
 		4 => "JMoreira",
